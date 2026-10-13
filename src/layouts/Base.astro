@@ -5,7 +5,7 @@ import Fonts from '../brand/Fonts.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
-import ogDefault from '../assets/renders/street-watercolor.jpg';
+import ogDefault from '../assets/renders/atrium.jpg';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
@@ -52,7 +52,10 @@ const ld = [complexLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) 
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />

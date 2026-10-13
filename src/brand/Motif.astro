@@ -1,12 +1,4 @@
 ---
-// Decorative brand motif (v1: "the nested frame" — the atrium seen from above).
-// Purely ornamental and aria-hidden. Replace or return nothing to remove it site-wide.
+// Decorative brand motif. Retired with the previous identity: renders nothing until a new one is designed.
 interface Props { class?: string }
-const { class: className } = Astro.props;
 ---
-<svg class:list={['motif', className]} viewBox="0 0 400 400" fill="none" aria-hidden="true">
-  <rect x="40" y="40" width="320" height="320" rx="70" stroke="currentColor" stroke-opacity=".35" stroke-width="1.4" />
-  <rect x="90" y="90" width="220" height="220" rx="52" stroke="var(--color-botanic-soft)" stroke-opacity=".6" stroke-width="1.4" />
-  <rect x="132" y="132" width="136" height="136" rx="34" stroke="var(--color-accent)" stroke-width="1.4" />
-  <rect x="168" y="168" width="64" height="64" rx="18" fill="var(--color-highlight)" />
-</svg>

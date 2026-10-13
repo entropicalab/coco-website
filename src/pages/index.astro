@@ -7,8 +7,8 @@ import { getCollection } from 'astro:content';
 import site from '../data/site.json';
 import { formatPrice, formatRate, residencePrice } from '../lib/format';
 
-import hero from '../assets/renders/street-watercolor.jpg';
-import atrium from '../assets/renders/atrium-watercolor.jpg';
+import hero from '../assets/renders/facade.jpg';
+import atrium from '../assets/renders/atrium.jpg';
 import entrance from '../assets/renders/entrance-garden.jpg';
 import cafe from '../assets/renders/cafe-bookstore.jpg';
 import aerial from '../assets/location/aerial.jpg';
@@ -25,19 +25,17 @@ const s = site.stats;
 <Base>
   <!-- Hero -->
   <section class="hero">
-    <div class="container hero__text">
-      <p class="eyebrow">Coronado · Panamá</p>
-      <h1 class="display">Live independently <em>without living alone.</em></h1>
-      <div class="hero__sub">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">Coronado · Panamá</p>
+        <h1 class="display">Live independently <em>without living alone.</em></h1>
         <p class="lede">{s.residences} homes on Panamá’s Pacific coast, designed for life after sixty. Every one faces the view, and every front door opens onto a shared garden atrium.</p>
         <div class="btn-row">
           <a class="btn btn--primary" href="/residences">Explore the residences</a>
           <a class="btn btn--ghost" href="/contact">Inquire</a>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <Figure src={hero} alt="Watercolour sketch of Coronado Commons from the street: a white five-storey building with deep balconies, a stone-clad column and trees alongside." ratio="21/9" loading="eager" widths={[800, 1400, 2000, 2400]} />
+      <Figure src={hero} alt="Watercolour of Coronado Commons from the street: a five-storey building with planted balconies, warm timber panels and parking under a canopy." ratio="5/7" loading="eager" widths={[480, 843]} sizes="(min-width: 1000px) 40vw, 100vw" class="hero__img" />
     </div>
   </section>
 
@@ -90,7 +88,7 @@ const s = site.stats;
         <p class="lede">At the centre of the building, a daylit garden atrium rises through every floor. Your front door opens onto it. You cross it on the way to the lift, to the café, to the street — and that’s where you get to know people.</p>
       </div>
       <div class="commons__media">
-        <Figure src={atrium} alt="Watercolour of the planted atrium: walkways on several levels look down onto tropical planting and shared tables." ratio="16/9" sizes="(min-width: 900px) 62vw, 100vw" />
+        <Figure src={atrium} alt="Watercolour of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/9" sizes="(min-width: 900px) 62vw, 100vw" />
         <Figure src={entrance} alt="Watercolour of the garden entrance with timber soffits, stone walls and lush planting." ratio="4/5" sizes="(min-width: 900px) 32vw, 100vw" class="commons__side" />
       </div>
     </div>
@@ -161,12 +159,14 @@ const s = site.stats;
 </Base>
 
 <style>
-  .hero { padding-top: clamp(2.5rem, 1.5rem + 4vw, 6rem); display: grid; gap: clamp(2.5rem, 2rem + 2vw, 4rem); }
-  .hero__text { display: grid; gap: 1.5rem; }
-  .hero__text .display { max-width: 14ch; }
-  .hero__sub { display: grid; gap: 1.75rem; }
+  .hero { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) clamp(2rem, 1rem + 3vw, 4rem); }
+  .hero__grid { display: grid; gap: clamp(2.5rem, 2rem + 2vw, 4rem); align-items: center; }
+  .hero__text { display: grid; gap: 1.75rem; justify-items: start; }
+  .hero__text .display { max-width: 12ch; }
+  .hero__text .lede { max-width: 34ch; }
   @media (min-width: 1000px) {
-    .hero__sub { grid-template-columns: 1.1fr 1fr; align-items: end; margin-left: 30%; }
+    .hero__grid { grid-template-columns: 1.25fr 1fr; }
+    .hero :global(.hero__img) { max-width: 520px; justify-self: end; width: 100%; }
   }
 
   .facts { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }

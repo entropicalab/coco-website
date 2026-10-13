@@ -1,29 +1,28 @@
 ---
-// Brand logo. Replace the SVG/wordmark here when the identity changes.
-// variant: "full" (mark + name) | "mark" (symbol only). tone: "default" | "inverse".
+// Brand logo: icon + wordmark. Replace the icon files in src/assets/brand/ to update it.
+// variant: "full" (icon + name) | "mark" (icon only). tone: "default" (on light) | "inverse" (on dark).
+import { Image } from 'astro:assets';
+import iconInk from '../assets/brand/icon-ink.png';
+import iconLight from '../assets/brand/icon-light.png';
 interface Props { variant?: 'full' | 'mark'; tone?: 'default' | 'inverse'; size?: number }
 const { variant = 'full', tone = 'default', size = 40 } = Astro.props;
+const icon = tone === 'inverse' ? iconLight : iconInk;
 ---
 <span class:list={['logo', `logo--${tone}`]} style={`--logo-size:${size}px`}>
-  <svg class="logo__mark" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-    <rect x="6" y="6" width="108" height="108" rx="27" stroke="currentColor" stroke-width="6" />
-    <rect x="31" y="31" width="58" height="58" rx="15" stroke="var(--logo-mid)" stroke-width="6" />
-    <rect x="50" y="50" width="20" height="20" rx="6" fill="var(--color-accent)" />
-  </svg>
+  <Image class="logo__mark" src={icon} alt="" width={size * 2} height={size * 2} loading="eager" />
   {variant === 'full' && <span class="logo__word">Coronado<br />Commons</span>}
 </span>
 
 <style>
-  .logo { display: inline-flex; align-items: center; gap: 0.7em; color: var(--color-ink); --logo-mid: var(--color-botanic); }
-  .logo--inverse { color: var(--color-inverse-ink); --logo-mid: var(--color-botanic-soft); }
-  .logo__mark { width: var(--logo-size); height: var(--logo-size); flex: none; }
+  .logo { display: inline-flex; align-items: center; gap: 0.7em; color: var(--color-ink); }
+  .logo--inverse { color: var(--color-inverse-ink); }
+  .logo :global(.logo__mark) { width: var(--logo-size); height: var(--logo-size); flex: none; }
   .logo__word {
     font-family: var(--font-display);
     font-size: calc(var(--logo-size) * 0.42);
     line-height: 0.95;
     letter-spacing: -0.01em;
     padding-left: 0.7em;
-    border-left: 1px solid currentColor;
-    border-left-color: color-mix(in srgb, currentColor 30%, transparent);
+    border-left: 1px solid color-mix(in srgb, currentColor 30%, transparent);
   }
 </style>
