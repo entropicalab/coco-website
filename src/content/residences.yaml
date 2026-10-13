@@ -1,0 +1,96 @@
+# Residence types shown on the website.
+# Edit this file to change what the website shows. Sizes are total m² including balcony/terrace.
+# priceFrom: USD with no $ or commas, or null for "Pricing on request".
+# status: available | reserved | sold
+# bathrooms: leave null until confirmed from the plans.
+# Images are matched by id: src/assets/plans/<id>.jpg and src/assets/interiors/<id>.jpg
+
+- id: type-a
+  name: Type A
+  size: 82
+  bedrooms: 1
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: A one-bedroom home with an open living room and kitchen that open straight onto the terrace.
+  rooms: [Queen bedroom, Guest bathroom, Living room, Kitchen, Terrace]
+
+- id: type-f
+  name: Type F
+  size: 86
+  bedrooms: 1
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: A generous one-bedroom with a king suite and an outdoor grill area on the terrace.
+  rooms: [King bedroom, Guest bathroom, Living room, Kitchen, Terrace, BBQ area]
+
+- id: type-b
+  name: Type B
+  size: 98
+  bedrooms: 2
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: Two bedrooms — a king suite and a second room for guests, grandchildren or a studio.
+  rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Kitchen, Terrace]
+
+- id: type-g
+  name: Type G
+  size: 99
+  bedrooms: 2
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: Two bedrooms with a separate dining area, arranged so living spaces face the view.
+  rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace]
+
+- id: type-c
+  name: Type C
+  size: 104
+  bedrooms: 2
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: Two bedrooms with a full dining room — room to host family dinners.
+  rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace]
+
+- id: type-e
+  name: Type E
+  size: 106
+  bedrooms: 2
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: Two bedrooms and a dining room, with a wide terrace across the front of the home.
+  rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace]
+
+- id: type-d
+  name: Type D
+  size: 117
+  bedrooms: 2
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: The largest two-bedroom, with a dining room and an outdoor grill area on the terrace.
+  rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace, BBQ area]
+
+- id: type-h
+  name: Type H
+  size: 148
+  bedrooms: 3
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: A three-bedroom corner home with two king suites — space for family to come and stay.
+  rooms: [King bedroom, King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace, BBQ area]
+
+- id: type-i
+  name: Type I
+  size: 154
+  bedrooms: 3
+  bathrooms: null
+  priceFrom: null
+  status: available
+  summary: The largest home in the building — three bedrooms and two terraces.
+  rooms: [King bedroom, King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Two terraces, BBQ area]

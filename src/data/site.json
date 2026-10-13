@@ -1,0 +1,65 @@
+{
+  "name": "Coronado Commons",
+  "shortName": "CoCo",
+  "url": "https://lifeatcoco.com",
+  "tagline": "Live independently without living alone.",
+  "description": "Coronado Commons is a boutique building of 41 residences in Coronado, Panamá, designed for life after sixty. Every home faces the view and opens onto a shared, garden-filled atrium.",
+  "salesEmail": "sales@lifeatcoco.com",
+  "phone": "+507 6200-6909",
+  "whatsapp": null,
+  "pricing": {
+    "residentialPerM2": null,
+    "currency": "USD"
+  },
+  "form": {
+    "provider": "formspree",
+    "formspreeEndpoint": "https://formspree.io/f/meaerkdj",
+    "subject": "lifeatcoco.com · new inquiry"
+  },
+  "address": {
+    "street": "Avenida Roberto Eisenmann",
+    "locality": "Coronado",
+    "region": "Chame, Panamá Oeste",
+    "country": "PA"
+  },
+  "geo": {
+    "lat": null,
+    "lng": null
+  },
+  "architect": {
+    "name": "Entrópica",
+    "url": "https://entropica-lab.com"
+  },
+  "stats": {
+    "residences": 41,
+    "residenceTypes": 9,
+    "sizeMin": 82,
+    "sizeMax": 154,
+    "bedroomsMin": 1,
+    "bedroomsMax": 3,
+    "commercialArea": 700
+  },
+  "disclaimer": "Coronado Commons is a project in development. Images are artist's impressions and are illustrative only. Areas are approximate, include balconies and terraces, and may change during design development. Amenities and ground-floor uses marked \"Planned\" are part of the concept and not yet confirmed. Prices and availability are subject to change without notice. This website is not an offer or contract.",
+  "nav": [
+    {
+      "label": "Residences",
+      "href": "/residences"
+    },
+    {
+      "label": "The Building",
+      "href": "/the-building"
+    },
+    {
+      "label": "Living Here",
+      "href": "/living"
+    },
+    {
+      "label": "Coronado",
+      "href": "/coronado"
+    },
+    {
+      "label": "Commercial",
+      "href": "/commercial"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+/* ==========================================================================
+   THEME — the brand layer.
+   Every color, font and "feel" decision for the site lives here.
+   Rebrand = change the values in this file (and src/brand/*). Nothing else.
+   Components only ever use the semantic names on the left.
+
+   Current values: CoCo Brand Book v1 (23 Jul 2026).
+   ========================================================================== */
+
+:root {
+  /* --- Raw palette (brand book names) — referenced only inside this file --- */
+  --brand-blueberry: #2d3e56;
+  --brand-blueberry-2: #3c506c;
+  --brand-cream: #f5eedf;
+  --brand-caramel: #de8b39;
+  --brand-caramel-deep: #94501a; /* AA-safe text version of caramel on cream */
+  --brand-banana: #eedca7;
+  --brand-mint: #afcbb2;
+  --brand-forest: #47624d;
+  --brand-sand: #e4d6c0;
+  --brand-espresso: #3a2a20;
+  --brand-mist: #c9d3de;
+
+  /* --- Semantic colors (use these in components) --- */
+  --color-bg: var(--brand-cream);            /* page background */
+  --color-bg-alt: #efe5d1;                   /* alternating section background */
+  --color-surface: #fffdf8;                  /* cards, form fields */
+  --color-ink: var(--brand-blueberry);       /* headings, primary text */
+  --color-text: #33302b;                     /* long-form body text */
+  --color-text-muted: #6b6255;               /* secondary text (AA on bg) */
+  --color-line: var(--brand-sand);           /* hairlines, borders */
+  --color-accent: var(--brand-caramel);      /* decorative accent: rules, dots, icons */
+  --color-accent-text: var(--brand-caramel-deep); /* accent used as text (eyebrows) */
+  --color-on-accent: var(--brand-espresso);  /* text placed on --color-accent */
+  --color-highlight: var(--brand-banana);    /* soft highlight fields */
+  --color-botanic: var(--brand-forest);      /* secondary accent: tags, "confirmed" */
+  --color-botanic-soft: var(--brand-mint);
+  --color-inverse-bg: var(--brand-blueberry);/* dark sections, footer */
+  --color-inverse-bg-2: var(--brand-blueberry-2);
+  --color-inverse-ink: var(--brand-cream);
+  --color-inverse-muted: var(--brand-mist);
+  --color-focus: var(--brand-caramel);
+
+  /* Buttons */
+  --btn-primary-bg: var(--brand-blueberry);
+  --btn-primary-ink: var(--brand-cream);
+  --btn-primary-bg-hover: #1f2d40;
+  --btn-accent-bg: var(--brand-caramel);
+  --btn-accent-ink: var(--brand-espresso);
+
+  /* --- Typography --- */
+  --font-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Hanken Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --display-weight: 400;
+  --display-weight-light: 300;
+  --display-tracking: -0.02em;
+  --display-style-emphasis: italic;   /* how <em> looks inside display headings */
+  --eyebrow-tracking: 0.2em;
+  --eyebrow-weight: 600;
+
+  /* --- Shape & depth --- */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 18px 40px rgba(45, 62, 86, 0.12);
+  --shadow-lift: 0 26px 60px rgba(45, 62, 86, 0.18);
+}

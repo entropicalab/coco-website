@@ -1,0 +1,37 @@
+# Ground-floor commercial units. Delivered as grey shell.
+# suggestedUse is concept only. priceFrom null = "Pricing on request".
+
+- id: local-1
+  name: Unit 1
+  size: 194
+  suggestedUse: Restaurant or retail
+  priceFrom: null
+  status: available
+
+- id: local-2
+  name: Unit 2
+  size: 60
+  suggestedUse: Retail or services
+  priceFrom: null
+  status: available
+
+- id: local-3
+  name: Unit 3
+  size: 201
+  suggestedUse: Café–restaurant
+  priceFrom: null
+  status: available
+
+- id: local-4
+  name: Unit 4
+  size: 74
+  suggestedUse: Bookstore
+  priceFrom: null
+  status: available
+
+- id: local-5
+  name: Unit 5
+  size: 137
+  suggestedUse: Pharmacy or clinic
+  priceFrom: null
+  status: available

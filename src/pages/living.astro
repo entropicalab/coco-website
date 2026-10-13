@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import cafe from '../assets/renders/cafe-bookstore.jpg';
+import walk from '../assets/renders/ground-walk.jpg';
+import atrium from '../assets/renders/atrium-watercolor.jpg';
+
+const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Living Here" description="Daily life at Coronado Commons: your own home, neighbours you know by name, a garden atrium, and a café, bookstore and pharmacy planned downstairs.">
+  <section class="section section--tight">
+    <div class="container section-head">
+      <p class="eyebrow">Living here</p>
+      <h1 class="h1">Your own life. <em>Good company.</em></h1>
+      <p class="lede">You keep your own front door, your own kitchen and your own routine. What changes is everything just outside it.</p>
+    </div>
+    <div class="container">
+      <Figure src={atrium} alt="Watercolour of the garden atrium with planting on several levels and neighbours passing on the walkways." ratio="21/9" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">A day at CoCo</p>
+        <h2 class="h2">Nothing is scheduled. Everything is close.</h2>
+      </div>
+      <ol class="day">
+        <li><span class="day__time">Morning</span><p>Coffee on your terrace as the light comes over the trees. Then downstairs for a second one at the café, where someone has saved you the paper.</p></li>
+        <li><span class="day__time">Midday</span><p>A walk into town for errands — the bank, the market, the doctor — and back before the heat.</p></li>
+        <li><span class="day__time">Afternoon</span><p>A book from downstairs, a nap, a swim at the beach, or nothing at all. Your home, your call.</p></li>
+        <li><span class="day__time">Evening</span><p>A class or a glass on the rooftop, dinner with family who’ve come to stay in the guest room — or a quiet night in.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Shared spaces &amp; services</p>
+        <h2 class="h2">What’s in the building.</h2>
+        <p class="muted">Items marked <span class="tag tag--planned">Planned</span> are part of the concept and not yet confirmed.</p>
+      </div>
+      <div class="grid" style="--min:280px">
+        {amenities.map((a) => (
+          <article class="amenity">
+            <div class="amenity__top">
+              <h3 class="h3">{a.data.name}</h3>
+              {!a.data.confirmed && <span class="tag tag--planned">Planned</span>}
+            </div>
+            <p>{a.data.summary}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <Figure src={cafe} alt="Watercolour of the planned café and bookstore, with reading chairs and shelves behind glass walls." ratio="4/3" />
+      <div class="stack">
+        <p class="eyebrow">Wellbeing, without the clinic</p>
+        <h2 class="h2">Health follows from how you live.</h2>
+        <p>Walking to town. Daylight in every room. Fresh air through the walkways. A reason to get out of the house and someone to say good morning to. We designed for these things first — they matter more than any gym.</p>
+        <p>And when you do need care, Coronado’s clinics and pharmacies are close by.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <Figure src={walk} alt="Watercolour of the planted ground-floor walkway under a timber canopy." ratio="21/9" />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .day { list-style: none; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--color-line); }
+  .day li { display: grid; gap: 0.5rem 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--color-line); max-width: none; }
+  @media (min-width: 760px) { .day li { grid-template-columns: 12rem 1fr; } }
+  .day__time { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: var(--color-botanic); }
+  .amenity { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 1.6rem; display: grid; gap: 0.75rem; align-content: start; }
+  .amenity__top { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+</style>

@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import ResidenceCard from '../../components/ResidenceCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Figure from '../../components/Figure.astro';
+import { getCollection } from 'astro:content';
+import site from '../../data/site.json';
+import typical from '../../assets/plans/level-typical.jpg';
+
+const residences = (await getCollection('residences')).sort((a, b) => a.data.size - b.data.size);
+const counts = [1, 2, 3].map((n) => ({ n, count: residences.filter((r) => r.data.bedrooms === n).length }));
+---
+<Base title="Residences" description={`${site.stats.residenceTypes} residence types at Coronado Commons, from ${site.stats.sizeMin} to ${site.stats.sizeMax} m², with one to three bedrooms. Every home faces the view.`}>
+  <section class="section section--tight">
+    <div class="container section-head" style="margin-bottom:0">
+      <p class="eyebrow">The residences</p>
+      <h1 class="h1">Find the home that fits.</h1>
+      <p class="lede">{site.stats.residenceTypes} layouts from {site.stats.sizeMin} to {site.stats.sizeMax} m². Every one has a terrace, a guest bathroom, step-free access and a view to the south.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="filter" role="group" aria-label="Filter by bedrooms">
+        <span class="filter__label">Show</span>
+        <button class="filter__btn" aria-pressed="true" data-filter="all">All</button>
+        {counts.map(({ n, count }) => (
+          <button class="filter__btn" aria-pressed="false" data-filter={String(n)}>{n} bedroom{n > 1 ? 's' : ''} <span class="muted">({count})</span></button>
+        ))}
+      </div>
+      <p class="visually-hidden" aria-live="polite" data-filter-status></p>
+
+      <div class="grid" style="--min:290px" data-residences>
+        {residences.map((r) => <ResidenceCard residence={r} />)}
+      </div>
+
+      <p class="small muted note">Areas are approximate and include balconies and terraces. 1 m² ≈ 10.8 sq ft.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container stack" style="--stack:2rem">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">A typical floor</p>
+        <h2 class="h2">Nine homes in a row, all facing the same way.</h2>
+        <p>Each residential floor holds nine homes along the south side. Shared walkways run along the north, and the atrium opens in the middle.</p>
+      </div>
+      <Figure src={typical} alt="Plan of a typical residential floor: nine apartments side by side along one long facade, with an open atrium at the centre." illustrative={false} caption="Typical residential floor. The plan may change during design development." />
+    </div>
+  </section>
+
+  <CtaBand title="Ask for plans and prices." interest="A residence" />
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-residences] > [data-bedrooms]');
+  const status = document.querySelector('[data-filter-status]');
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      let shown = 0;
+      cards.forEach((c) => {
+        const match = f === 'all' || c.dataset.bedrooms === f;
+        c.hidden = !match;
+        if (match) shown++;
+      });
+      if (status) status.textContent = `Showing ${shown} residence types`;
+    })
+  );
+</script>
+
+<style>
+  .filter { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-bottom: 2rem; }
+  .filter__label { font-weight: 600; margin-right: 0.4rem; }
+  .filter__btn {
+    min-height: 48px; padding: 0.5rem 1.2rem; border-radius: var(--radius-pill); cursor: pointer;
+    border: 1.5px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); font-weight: 600;
+  }
+  .filter__btn[aria-pressed='true'] { background: var(--btn-primary-bg); color: var(--btn-primary-ink); border-color: transparent; }
+  .filter__btn[aria-pressed='true'] .muted { color: inherit; opacity: .8; }
+  .note { margin-top: 2rem; }
+</style>

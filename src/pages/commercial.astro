@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+import { formatPrice, formatArea, statusLabel } from '../lib/format';
+import ground from '../assets/plans/level-ground.jpg';
+import cafe from '../assets/renders/cafe-bookstore.jpg';
+
+const units = await getCollection('commercial');
+const total = units.reduce((t, u) => t + u.data.size, 0);
+---
+<Base title="Commercial Units" description={`Ground-floor commercial units at Coronado Commons, Coronado, Panamá — about ${total} m² across ${units.length} units on the main avenue, delivered as grey shell.`}>
+  <section class="section section--tight">
+    <div class="container split split--wide-left">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">For businesses</p>
+        <h1 class="h1">Open your doors <em>on the avenue.</em></h1>
+        <p class="lede">{units.length} ground-floor units, about {total} m² in all, on Coronado’s main avenue — with {site.stats.residences} households upstairs and the whole town outside.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="#inquire">Ask about a unit</a></div>
+      </div>
+      <Figure src={cafe} alt="Watercolour of a ground-floor café and bookstore opening onto a planted terrace." ratio="4/5" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Available units</h2>
+        <p>Units are delivered as grey shell, ready for your own fit-out. Suggested uses reflect the building’s concept and are open to discussion.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="units">
+          <thead><tr><th scope="col">Unit</th><th scope="col">Area</th><th scope="col">Suggested use</th><th scope="col">Price</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            {units.map((u) => (
+              <tr>
+                <th scope="row">{u.data.name}</th>
+                <td>{formatArea(u.data.size)}</td>
+                <td>{u.data.suggestedUse}</td>
+                <td>{formatPrice(u.data.priceFrom)}</td>
+                <td>{statusLabel[u.data.status]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted" style="margin-top:1rem">Areas are approximate and may change during design development. Units can be combined.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stack" style="--stack:2rem">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Ground floor plan</p>
+        <h2 class="h2">Built around the atrium.</h2>
+        <p>The units line the avenue frontage and the building’s length, with the lobby and garden atrium at the centre bringing residents past your door every day.</p>
+      </div>
+      <Figure src={ground} alt="Ground floor plan showing five commercial units around the central lobby and atrium." illustrative={false} />
+    </div>
+  </section>
+
+  <section class="section section--alt" id="inquire">
+    <div class="container--narrow stack" style="--stack:2rem">
+      <div class="stack">
+        <p class="eyebrow">Inquire</p>
+        <h2 class="h2">Tell us about your business.</h2>
+        <p>Whether you want to buy or operate, we’d like to hear what you have in mind.</p>
+      </div>
+      <InquiryForm interest="Commercial unit" id="commercial-inquiry" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .table-wrap { overflow-x: auto; border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-surface); }
+  .units { width: 100%; border-collapse: collapse; min-width: 640px; }
+  .units :is(th, td) { text-align: left; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-line); }
+  .units thead th { font-size: 0.85rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--color-text-muted); font-weight: 600; }
+  .units tbody th { color: var(--color-ink); font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; }
+  .units tbody tr:last-child :is(th, td) { border-bottom: 0; }
+</style>

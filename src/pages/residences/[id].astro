@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import Figure from '../../components/Figure.astro';
+import InquiryForm from '../../components/InquiryForm.astro';
+import ResidenceCard from '../../components/ResidenceCard.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import site from '../../data/site.json';
+import { formatPrice, formatRate, residencePrice, formatArea, bedroomLabel, planFor, interiorFor, statusLabel } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('residences')).sort((a, b) => a.data.size - b.data.size);
+  return all.map((r) => ({ params: { id: r.id }, props: { residence: r, all } }));
+}
+interface Props { residence: CollectionEntry<'residences'>; all: CollectionEntry<'residences'>[] }
+const { residence, all } = Astro.props;
+const { id, data } = residence;
+const plan = planFor(id);
+const interior = interiorFor(id);
+const price = residencePrice(data);
+const rate = data.priceFrom != null ? data.priceFrom / data.size : site.pricing.residentialPerM2;
+const similar = all.filter((r) => r.id !== id && r.data.bedrooms === data.bedrooms).slice(0, 3);
+const url = new URL(`/residences/${id}`, site.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Apartment',
+  name: `${site.name} — ${data.name}`,
+  description: data.summary,
+  url,
+  numberOfBedrooms: data.bedrooms,
+  ...(data.bathrooms ? { numberOfBathroomsTotal: data.bathrooms } : {}),
+  floorSize: { '@type': 'QuantitativeValue', value: data.size, unitCode: 'MTK' },
+  containedInPlace: { '@type': 'ApartmentComplex', name: site.name, url: site.url },
+  ...(price
+    ? { offers: { '@type': 'Offer', price, priceCurrency: 'USD', availability: data.status === 'sold' ? 'https://schema.org/SoldOut' : 'https://schema.org/PreOrder', url } }
+    : {}),
+};
+---
+<Base
+  title={`${data.name} · ${bedroomLabel(data.bedrooms)}, ${data.size} m²`}
+  description={`${data.name} at Coronado Commons: ${bedroomLabel(data.bedrooms)}, about ${data.size} m² with terrace, facing the view. ${formatPrice(price)}.`}
+  ogImage={interior}
+  jsonLd={jsonLd}
+>
+  <section class="section section--tight">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="crumbs small"><a href="/residences">Residences</a> <span aria-hidden="true">/</span> <span aria-current="page">{data.name}</span></nav>
+
+      <div class="rhead">
+        <div class="stack">
+          <p class="eyebrow">{bedroomLabel(data.bedrooms)}</p>
+          <h1 class="h1">{data.name}</h1>
+          <p class="lede">{data.summary}</p>
+        </div>
+        <aside class="spec" aria-label="Key details">
+          <dl>
+            <div><dt>Size</dt><dd>{formatArea(data.size)}<span class="small muted">Approx., incl. terrace</span></dd></div>
+            <div><dt>Bedrooms</dt><dd>{data.bedrooms}</dd></div>
+            {data.bathrooms && <div><dt>Bathrooms</dt><dd>{data.bathrooms}</dd></div>}
+            <div><dt>Orientation</dt><dd>South, to the view</dd></div>
+            <div><dt>Price</dt><dd class="spec__price">{formatPrice(price)}{price != null && <span class="small muted">{formatRate(rate)}</span>}</dd></div>
+            <div><dt>Status</dt><dd>{statusLabel[data.status]}</dd></div>
+          </dl>
+          <a class="btn btn--primary" href="#inquire">Ask about {data.name}</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container plan-wrap">
+      <figure class="plan">
+        {plan && <Image src={plan} alt={`Floor plan of ${data.name}. Rooms: ${data.rooms.join(', ')}.`} widths={[600, 900, 1300]} sizes="(min-width: 1000px) 55vw, 100vw" loading="eager" />}
+        <figcaption class="small muted">Floor plan, not to scale. Furniture is shown to give a sense of space.</figcaption>
+      </figure>
+      <div class="stack">
+        <h2 class="h3">What’s inside</h2>
+        <ul class="rooms">
+          {data.rooms.map((room) => <li>{room}</li>)}
+        </ul>
+        <h2 class="h3" style="margin-top:2.5rem">In every home</h2>
+        <ul class="rooms">
+          <li>Step-free from the street to the terrace</li>
+          <li>Front door onto the garden atrium</li>
+          <li>Terrace facing south, over the trees</li>
+          <li>Covered parking with lift access</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {interior && (
+    <section class="section section--alt">
+      <div class="container stack" style="--stack:1.5rem">
+        <h2 class="h3">Inside {data.name}</h2>
+        <Figure src={interior} alt={`Early design view inside ${data.name}, looking toward the terrace and the view.`} ratio="16/9" caption="Early design view. Finishes, furniture and materials will be shown in later visuals." />
+      </div>
+    </section>
+  )}
+
+  <section class="section" id="inquire">
+    <div class="container--narrow stack" style="--stack:2rem">
+      <div class="stack">
+        <p class="eyebrow">Inquire</p>
+        <h2 class="h2">Ask about {data.name}.</h2>
+        <p>We’ll send the full plan, current price and which floors are available.</p>
+      </div>
+      <InquiryForm interest={data.name} id="residence-inquiry" />
+    </div>
+  </section>
+
+  {similar.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="h3" style="margin-bottom:2rem">Other {bedroomLabel(data.bedrooms)} homes</h2>
+        <div class="grid" style="--min:290px">{similar.map((r) => <ResidenceCard residence={r} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .crumbs { margin-bottom: 2rem; color: var(--color-text-muted); }
+  .crumbs a { color: inherit; }
+  .rhead { display: grid; gap: 2.5rem; align-items: start; }
+  @media (min-width: 960px) { .rhead { grid-template-columns: 1.4fr 1fr; } }
+  .spec { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: 1.75rem; display: grid; gap: 1.5rem; }
+  .spec dl { display: grid; }
+  .spec dl > div { display: grid; grid-template-columns: minmax(6rem, 8.5rem) 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--color-line); }
+  .spec dt { color: var(--color-text-muted); }
+  .spec dd { color: var(--color-ink); font-weight: 600; display: grid; }
+  .spec dd .small { font-weight: 400; }
+  .spec__price { font-size: 1.2rem; }
+  @media (max-width: 500px) { .spec { padding: 1.25rem; } .spec dl > div { grid-template-columns: 1fr; gap: 0.15rem; } }
+
+  .plan-wrap { display: grid; gap: 3rem; align-items: start; }
+  @media (min-width: 1000px) { .plan-wrap { grid-template-columns: 1.4fr 1fr; } }
+  .plan { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: clamp(1rem, 0.5rem + 2vw, 2.5rem); display: grid; gap: 1rem; }
+  .plan :global(img) { max-height: 80vh; width: auto; margin-inline: auto; }
+  .rooms { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
+  .rooms li { padding: 0.65rem 0; border-bottom: 1px solid var(--color-line); color: var(--color-ink); }
+</style>

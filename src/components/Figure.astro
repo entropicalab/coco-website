@@ -1,0 +1,36 @@
+---
+// Every render goes through this so the "Illustrative" flag is never forgotten.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  illustrative?: boolean;  // true for renders/sketches; false for real photos
+  ratio?: string;          // e.g. "16/9", "4/5" — crops with object-fit
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+const { src, alt, caption, illustrative = true, ratio, widths = [640, 960, 1400, 2000], sizes = '100vw', loading = 'lazy', class: className } = Astro.props;
+---
+<figure class:list={['figure', className]}>
+  <div class="frame figure__media" style={ratio ? `aspect-ratio:${ratio}` : undefined}>
+    <Image src={src} alt={alt} widths={widths.filter((w) => w <= src.width)} sizes={sizes} loading={loading} fetchpriority={loading === 'eager' ? 'high' : 'auto'} />
+    {illustrative && <span class="figure__flag">Illustrative</span>}
+  </div>
+  {caption && <figcaption class="small muted">{caption}</figcaption>}
+</figure>
+
+<style>
+  .figure { display: grid; gap: 0.75rem; }
+  .figure__media { position: relative; }
+  /* Very wide crops get taller on phones so the image stays legible */
+  @media (max-width: 700px) { .figure__media[style*='21/9'] { aspect-ratio: 4 / 3 !important; } }
+  .figure__flag {
+    position: absolute; right: 0.9rem; bottom: 0.9rem; padding: 0.2rem 0.65rem; border-radius: var(--radius-pill);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    background: color-mix(in srgb, var(--color-inverse-bg) 78%, transparent); color: var(--color-inverse-ink);
+  }
+</style>

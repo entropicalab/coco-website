@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { formatPrice, formatRate, residencePrice, bedroomLabel, planFor, statusLabel } from '../lib/format';
+interface Props { residence: CollectionEntry<'residences'> }
+const { id, data } = Astro.props.residence;
+const plan = planFor(id);
+const price = residencePrice(data);
+const ownPrice = data.priceFrom != null;
+---
+<article class="rcard" data-bedrooms={data.bedrooms}>
+  <a href={`/residences/${id}`} class="rcard__link">
+    <div class="rcard__plan">
+      {plan && <Image src={plan} alt={`Floor plan of ${data.name}`} widths={[320, 520]} sizes="(min-width: 900px) 30vw, 90vw" />}
+    </div>
+    <div class="rcard__body">
+      <div class="rcard__top">
+        <h3 class="h3">{data.name}</h3>
+        {data.status !== 'available' && <span class="tag tag--muted">{statusLabel[data.status]}</span>}
+      </div>
+      <p class="rcard__meta">{bedroomLabel(data.bedrooms)} · {data.size} m²</p>
+      <p class="rcard__price">{formatPrice(price)}{price != null && !ownPrice && <span class="rcard__rate">{formatRate()}</span>}</p>
+      <span class="text-link" aria-hidden="true">See the plan</span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .rcard { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow .25s, transform .25s; }
+  .rcard:hover { box-shadow: var(--shadow-soft); transform: translateY(-3px); }
+  .rcard__link { display: grid; text-decoration: none; color: inherit; height: 100%; }
+  .rcard__plan { aspect-ratio: 4 / 3; background: var(--color-bg-alt); padding: 1.25rem; overflow: hidden; }
+  .rcard__plan :global(img) { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  .rcard__body { padding: 1.5rem 1.6rem 1.75rem; display: grid; gap: 0.35rem; }
+  .rcard__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .rcard__meta { color: var(--color-text-muted); }
+  .rcard__price { font-weight: 600; color: var(--color-ink); margin-bottom: 0.6rem; display: grid; }
+  .rcard__rate { font-weight: 400; font-size: 0.95rem; color: var(--color-text-muted); }
+  .rcard .text-link { justify-self: start; }
+</style>

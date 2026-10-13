@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+const updated = 'October 2026';
+---
+<Base title="Legal & Privacy" description="Legal notice and privacy policy for the Coronado Commons website.">
+  <section class="section">
+    <div class="container--narrow legal stack" style="--stack:1.25rem">
+      <p class="eyebrow">Legal</p>
+      <h1 class="h1">Legal &amp; privacy</h1>
+      <p class="muted small">Last updated {updated}</p>
+
+      <h2 class="h3">About this website</h2>
+      <p>This website presents {site.name}, a residential project in development at {site.address.street}, {site.address.locality}, Panamá. It is for information only.</p>
+      <p>{site.disclaimer}</p>
+
+      <h2 class="h3">The short version</h2>
+      <ul>
+        <li>We only collect what you choose to send us through the inquiry form or by email.</li>
+        <li>We use it only to answer you.</li>
+        <li>We don’t sell it, rent it or share it for marketing.</li>
+        <li>We don’t keep a database of visitors, and this site uses no advertising or tracking cookies.</li>
+      </ul>
+
+      <h2 class="h3">What we receive</h2>
+      <p>When you send an inquiry, we receive the details you type into the form: your name, email address and, if you choose to give them, your phone number, where you live, what you’re interested in and your message. We don’t ask for anything else and we don’t collect information about you from other sources.</p>
+
+      <h2 class="h3">How it reaches us</h2>
+      <p>The inquiry form is delivered by Formspree, a form service that forwards each message to our sales inbox, {site.salesEmail}. Formspree processes the message only to deliver it to us, under its own <a href="https://formspree.io/legal/privacy-policy/">privacy policy</a>. This website is hosted on GitHub Pages, which, like any web host, may log basic technical information such as IP addresses for security and operation.</p>
+
+      <h2 class="h3">How we use it</h2>
+      <p>We use your details to reply to your inquiry and to send you the information you asked for, such as plans, prices and availability. We won’t add you to a mailing list or send you marketing you didn’t ask for.</p>
+
+      <h2 class="h3">How long we keep it</h2>
+      <p>Your message stays in our email only as long as we need it to answer you and follow up on your interest. You can ask us to delete it at any time.</p>
+
+      <h2 class="h3">Your choices</h2>
+      <p>You can ask us what we hold about you, correct it, or have it deleted. Write to <a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a> and we’ll take care of it.</p>
+
+      <h2 class="h3">Cookies</h2>
+      <p>This website doesn’t use advertising, analytics or tracking cookies. Fonts are loaded from Google Fonts, which receives your IP address in order to deliver them.</p>
+
+      <h2 class="h3">Images and information</h2>
+      <p>Renders, sketches and plans show a design in development and are illustrative only. Areas, layouts, specifications, amenities and prices may change. Nothing on this website is an offer, a contract or a guarantee. Any purchase is governed solely by the signed sale documents.</p>
+
+      <h2 class="h3">Contact</h2>
+      <p>{site.name} · <a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a>{site.phone && <> · <a href={`tel:${site.phone.replace(/[\s-]/g, '')}`}>{site.phone}</a></>}</p>
+
+      <p class="small muted" style="margin-top:2.5rem">Draft for review by the project’s legal advisor.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal h2 { margin-top: 2.25rem; }
+  .legal ul { padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+</style>

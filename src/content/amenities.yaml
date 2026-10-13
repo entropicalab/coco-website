@@ -1,0 +1,50 @@
+# Shared spaces and services. confirmed: false shows a "Planned" tag on the site.
+# order controls display order (lowest first).
+
+- id: atrium
+  name: The atrium
+  order: 1
+  confirmed: true
+  summary: A planted, daylit atrium rises through every floor. Every front door opens onto it, so you pass neighbours on the way to the lift — not in a hallway.
+
+- id: view
+  name: The view
+  order: 2
+  confirmed: true
+  summary: Every home faces south, over the protected treed grounds next door toward the coast. No home looks onto a wall.
+
+- id: solar
+  name: Solar power
+  order: 3
+  confirmed: true
+  summary: A rooftop solar array helps power the building — lower shared costs, cleaner energy.
+
+- id: cafe
+  name: Café
+  order: 4
+  confirmed: false
+  summary: A ground-floor café for breakfast, lunch and the daily coffee with neighbours.
+
+- id: bookstore
+  name: Bookstore
+  order: 5
+  confirmed: false
+  summary: A small bookstore and reading room off the atrium.
+
+- id: pharmacy
+  name: Pharmacy
+  order: 6
+  confirmed: false
+  summary: A pharmacy downstairs, serving residents and the town.
+
+- id: rooftop
+  name: Rooftop lounge
+  order: 7
+  confirmed: false
+  summary: A shared rooftop room for classes, gatherings and evenings above the trees.
+
+- id: parking
+  name: Covered parking
+  order: 8
+  confirmed: true
+  summary: Covered parking in the basement, with lift access straight to your floor.

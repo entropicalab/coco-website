@@ -1,0 +1,25 @@
+---
+import Motif from '../brand/Motif.astro';
+interface Props { title?: string; text?: string; interest?: string }
+const {
+  title = 'Come and see where you could live.',
+  text = 'Tell us a little about what you’re looking for. We’ll send plans, prices and availability, and answer your questions personally.',
+  interest,
+} = Astro.props;
+const href = interest ? `/contact?interest=${encodeURIComponent(interest)}` : '/contact';
+---
+<section class="section section--inverse cta">
+  <Motif class="cta__motif" />
+  <div class="container cta__inner stack" style="--stack:1.5rem">
+    <p class="eyebrow">Inquire</p>
+    <h2 class="h1">{title}</h2>
+    <p class="lede">{text}</p>
+    <div class="btn-row"><a class="btn btn--accent" href={href}>Send an inquiry</a></div>
+  </div>
+</section>
+
+<style>
+  .cta { position: relative; overflow: hidden; }
+  .cta__inner { position: relative; max-width: 900px; margin-inline: auto; text-align: left; }
+  .cta :global(.cta__motif) { position: absolute; width: min(70vw, 720px); right: -18%; top: 50%; transform: translateY(-50%); color: var(--color-inverse-ink); pointer-events: none; }
+</style>

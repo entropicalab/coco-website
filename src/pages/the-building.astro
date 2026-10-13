@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
+import CtaBand from '../components/CtaBand.astro';
+import site from '../data/site.json';
+import street2 from '../assets/renders/street-watercolor-2.jpg';
+import atriumBox from '../assets/renders/atrium-whitebox.jpg';
+import massing from '../assets/renders/massing-iso.jpg';
+import ground from '../assets/plans/level-ground.jpg';
+
+const levels = [
+  { name: 'Rooftop', text: 'Solar array and a shared rooftop room (planned).' },
+  { name: 'Level 5', text: 'Five residences and shared amenity space.' },
+  { name: 'Levels 1–4', text: 'Nine residences per floor, all facing south.' },
+  { name: 'Ground floor', text: 'Lobby, the atrium garden and shops for residents and the town.' },
+  { name: 'Basement', text: 'Covered parking, with lifts to every floor.' },
+];
+---
+<Base title="The Building" description="How Coronado Commons is designed: one home deep so every residence faces the view, a garden atrium at the centre, solar power on the roof, and step-free access throughout.">
+  <section class="section section--tight">
+    <div class="container section-head">
+      <p class="eyebrow">The building</p>
+      <h1 class="h1">Everything opens onto <em>the centre.</em></h1>
+      <p class="lede">A narrow site, one good direction, and a simple idea: put every home on the view side, and make the shared spaces the heart of the building.</p>
+    </div>
+    <div class="container">
+      <Figure src={street2} alt="Watercolour of the building from the avenue: stacked white balconies and a tall stone-clad element." ratio="21/9" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="stack">
+        <p class="eyebrow">One home deep</p>
+        <h2 class="h2">Why every home faces the view.</h2>
+        <p>Most buildings stack homes on both sides of a corridor, so half of them look the wrong way. Coronado Commons is one home deep. Walkways run along the north side, open to the breeze, and every residence looks south over the treed grounds next door.</p>
+        <p>It means more light, cross-ventilation and a terrace with a view for every home — not just the expensive ones.</p>
+      </div>
+      <Figure src={massing} alt="Architectural model showing the long, narrow building with residences lined up along its length." ratio="4/3" />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container split split--wide-left">
+      <Figure src={atriumBox} alt="Early design view of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/9" />
+      <div class="stack">
+        <p class="eyebrow">The atrium</p>
+        <h2 class="h2">A garden at the heart of the building.</h2>
+        <p>The atrium rises from the ground floor to the sky, bringing daylight and planting deep into the building. The lifts and stairs sit around it, so daily life — collecting the post, heading out for coffee — happens in a shared, green space.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="stack">
+        <p class="eyebrow">Floor by floor</p>
+        <h2 class="h2">Five floors of homes above a lively ground floor.</h2>
+      </div>
+      <ol class="levels">
+        {levels.map((l) => <li><span class="levels__name">{l.name}</span><span>{l.text}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container stack" style="--stack:2rem">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Ground floor</p>
+        <h2 class="h2">A small high street, downstairs.</h2>
+        <p>The lobby and atrium sit between ground-floor shops planned for everyday needs. <a href="/commercial">See the commercial units</a>.</p>
+      </div>
+      <Figure src={ground} alt="Ground floor plan: lobby and atrium in the centre, with five commercial units along the avenue and the length of the building." illustrative={false} caption="Ground floor plan. Uses shown are part of the concept and not yet confirmed." />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Built to last</p>
+        <h2 class="h2">Designed to be easy to live in, for a long time.</h2>
+      </div>
+      <div class="grid" style="--min:260px">
+        <div class="point"><h3 class="h3">Step-free throughout</h3><p>Level access from the street and parking to every front door and terrace. Universal design is our standard, not an upgrade.</p></div>
+        <div class="point"><h3 class="h3">Solar on the roof</h3><p>A rooftop solar array helps power the building, keeping shared running costs down.</p></div>
+        <div class="point"><h3 class="h3">Light and air</h3><p>Every home has windows to the south and an open walkway to the north, for daylight and cross-breezes.</p></div>
+        <div class="point"><h3 class="h3">Parking, solved</h3><p>Covered basement parking, with lifts that go straight up to your floor.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container"><p class="small muted">Architecture by {site.architect.name}. The design is in development and may change.</p></div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .levels { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
+  .levels li { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); max-width: none; }
+  .levels__name { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-ink); }
+  .point { border-top: 2px solid var(--color-accent); padding-top: 1.25rem; display: grid; gap: 0.6rem; align-content: start; }
+</style>

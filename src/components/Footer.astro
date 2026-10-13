@@ -1,0 +1,47 @@
+---
+import Logo from '../brand/Logo.astro';
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer section--inverse">
+  <div class="container site-footer__grid">
+    <div class="stack">
+      <Logo tone="inverse" size={44} />
+      <p class="site-footer__tag">{site.tagline}</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul>
+        {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="stack" style="--stack:0.5rem">
+      <p class="eyebrow">Sales</p>
+      <p><a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a></p>
+      {site.phone && <p><a href={`tel:${site.phone.replace(/[\s-]/g, '')}`}>{site.phone}</a></p>}
+      <p class="muted">{site.address.street}<br />{site.address.locality}, {site.address.region}<br />Panamá</p>
+    </div>
+  </div>
+
+  <div class="container site-footer__legal">
+    <p class="small">{site.disclaimer}</p>
+    <p class="small">
+      © {year} {site.name}. Architecture by <a href={site.architect.url}>{site.architect.name}</a>.
+      · <a href="/legal">Legal &amp; privacy</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: clamp(4rem, 3rem + 3vw, 6rem) 2.5rem; }
+  .site-footer__grid { display: grid; gap: 3rem; grid-template-columns: 1fr; padding-bottom: 3rem; border-bottom: 1px solid var(--color-inverse-bg-2); }
+  @media (min-width: 860px) { .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .site-footer__tag { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; color: var(--color-highlight); }
+  .site-footer ul { list-style: none; padding: 0; display: grid; gap: 0.35rem; }
+  .site-footer ul a { text-decoration: none; display: inline-block; padding-block: 0.3rem; }
+  .site-footer ul a:hover { text-decoration: underline; }
+  .site-footer__legal { padding-top: 2rem; display: grid; gap: 1rem; }
+  .site-footer__legal p { max-width: 110ch; }
+</style>
