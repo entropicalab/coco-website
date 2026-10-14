@@ -1,6 +1,6 @@
 ---
 import Motif from '../brand/Motif.astro';
-import mural from '../assets/photos/banana-mural.jpg';
+import palm from '../assets/photos/coconut-palm.jpg';
 interface Props { title?: string; text?: string; interest?: string }
 const {
   title = 'Come and see it for yourself.',
@@ -10,7 +10,7 @@ const {
 const href = interest ? `/contact?interest=${encodeURIComponent(interest)}` : '/contact';
 ---
 <section class="section section--inverse cta">
-  <Motif class="cta__canopy" image={mural} />
+  <Motif class="cta__canopy" image={palm} />
   <div class="container cta__inner">
     <div class="stack" style="--stack:1.5rem">
       <h2 class="h1">Book a visit <em>{title}</em></h2>

@@ -5,6 +5,7 @@ import ResidenceCard from '../components/ResidenceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Motif from '../brand/Motif.astro';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import site from '../data/site.json';
 import { formatPrice, residencePrice } from '../lib/format';
 
@@ -15,6 +16,7 @@ import cafe from '../assets/renders/cafe-bookstore.jpg';
 import aerial from '../assets/location/aerial.jpg';
 import couple from '../assets/photos/couple-bench.jpg';
 import friends from '../assets/photos/couple-garden-table.jpg';
+import mural from '../assets/photos/banana-mural.jpg';
 
 const residences = (await getCollection('residences')).sort((a, b) => a.data.size - b.data.size);
 // One of each bedroom count for the teaser
@@ -23,6 +25,7 @@ const prices = residences.map((r) => residencePrice(r.data)).filter((p): p is nu
 const lowest = prices.length ? Math.min(...prices) : null;
 const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order - b.data.order);
 const s = site.stats;
+const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
 ---
 <Base>
   <!-- Hero: the plan (text) beside the building, one canopy crossing the corner -->
@@ -96,7 +99,7 @@ const s = site.stats;
   </section>
 
   <!-- Residences teaser -->
-  <section class="section section--alt">
+  <section class="section section--herringbone">
     <div class="container">
       <div class="section-head">
         <h2 class="h2">The homes <em>Nine layouts, one to three bedrooms.</em></h2>
@@ -141,10 +144,10 @@ const s = site.stats;
     </div>
   </section>
 
-  <!-- Commercial teaser: the one wood field with fins -->
+  <!-- Commercial teaser: the plan panel on the painted banana garden -->
   <section class="section--tight">
     <div class="container">
-      <div class="commercial-teaser fins">
+      <div class="commercial-teaser" style={`background-image:url(${muralBg.src})`}>
         <div class="commercial-teaser__plan stack" style="--stack:.75rem">
           <h2 class="h3">For businesses</h2>
           <p>Ground-floor commercial units, about {s.commercialArea} m² in all, for operators and owners who want to serve the building and the town around it.</p>
@@ -163,6 +166,7 @@ const s = site.stats;
   .hero__grid { display: grid; gap: 0; align-items: stretch; }
   .hero__plan {
     background: var(--color-inverse-bg); color: var(--color-inverse-ink);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     padding: clamp(2rem, 1.2rem + 3vw, 4.5rem); display: grid; gap: 1.6rem; align-content: center;
   }
   .hero__plan .eyebrow { color: var(--color-highlight); }
@@ -173,10 +177,12 @@ const s = site.stats;
   .hero__link:hover { border-bottom-color: var(--color-highlight); }
   .hero__media { position: relative; }
   .hero__media :global(.figure) { height: 100%; }
-  .hero__media :global(.figure__media) { height: 100%; }
+  .hero__media :global(.figure__media) { height: 100%; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .hero :global(.hero__canopy) { position: absolute; width: clamp(140px, 22vw, 300px); right: -60px; top: -60px; z-index: -0; mix-blend-mode: multiply; }
   @media (min-width: 1000px) {
     .hero__grid { grid-template-columns: 1.15fr 1fr; }
+    .hero__plan { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+    .hero__media :global(.figure__media) { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
     .hero :global(.hero__canopy) { right: -110px; top: -90px; }
   }
 
@@ -196,7 +202,7 @@ const s = site.stats;
   .amen { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
   .amen li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--color-line); color: var(--color-ink); max-width: none; }
 
-  .commercial-teaser { padding: clamp(1.25rem, 1rem + 2vw, 2.5rem); }
-  .commercial-teaser__plan { background: var(--color-inverse-bg); color: var(--color-inverse-ink); padding: clamp(1.75rem, 1.2rem + 2vw, 3rem); max-width: 36rem; }
+  .commercial-teaser { padding: clamp(1.25rem, 1rem + 4vw, 4.5rem); border-radius: var(--radius-lg); background-size: cover; background-position: center; }
+  .commercial-teaser__plan { background: var(--color-inverse-bg); color: var(--color-inverse-ink); padding: clamp(1.75rem, 1.2rem + 2vw, 3rem); max-width: 36rem; border-radius: var(--radius-md); }
   .commercial-teaser__plan .h3 { color: var(--color-inverse-ink); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 400; }
 </style>

@@ -9,7 +9,8 @@
 
 :root {
   /* --- Raw palette (brand book names) — referenced only inside this file --- */
-  --brand-carvao: #434343;     /* base: charcoal */
+  --brand-carvao: #434343;     /* base: charcoal (brand book) */
+  --brand-carvao-deep: #212121;/* charcoal taken halfway to black: the web ink, for contrast */
   --brand-nevoa: #eeeeee;      /* base: off-white */
   --brand-madeira: #7d4f2c;    /* wood */
   --brand-madeira-dark: #5e3a1f;
@@ -22,32 +23,35 @@
 
   /* --- Semantic colors (use these in components) --- */
   --color-bg: #ffffff;                    /* page background */
-  --color-bg-alt: var(--brand-nevoa);     /* alternating section background */
+  --color-bg-alt: #ffffff;                /* alternating bands stay white; they carry a line pattern instead */
   --color-surface: #ffffff;               /* cards, form fields */
-  --color-ink: var(--brand-carvao);       /* headings, primary text */
-  --color-text: var(--brand-carvao);      /* long-form body text */
-  --color-text-muted: #5f5f5f;            /* secondary text (AA on white and névoa) */
+  --color-ink: var(--brand-carvao-deep);  /* headings, primary text */
+  --color-text: var(--brand-carvao-deep); /* long-form body text */
+  --color-text-muted: #4a4a4a;            /* secondary text (AAA on white) */
   --color-line: #d6d6d6;                  /* hairlines, borders */
   --color-accent: var(--brand-madeira);   /* decorative accent: rules, fins */
   --color-accent-text: var(--brand-madeira); /* accent used as text (labels) */
-  --color-on-accent: var(--brand-carvao); /* text placed on --color-highlight */
+  --color-on-accent: var(--brand-carvao-deep); /* text placed on --color-highlight */
   --color-highlight: var(--brand-hibisco);/* the pop: buttons, planned tags */
   --color-botanic: var(--brand-bananeira);/* the canopy green */
   --color-botanic-soft: var(--brand-agua);
-  --color-inverse-bg: var(--brand-carvao);/* dark sections */
-  --color-inverse-bg-2: #5a5a5a;
-  --color-inverse-ink: var(--brand-nevoa);
-  --color-inverse-muted: #d6d6d6;
+  --color-inverse-bg: var(--brand-carvao-deep); /* dark sections */
+  --color-inverse-bg-2: #3a3a3a;
+  --color-inverse-ink: #ffffff;
+  --color-inverse-muted: #f0f0f0;
   --color-footer-bg: var(--brand-coco);
   --color-focus: var(--brand-cobalto);
   --fins: repeating-linear-gradient(90deg, var(--brand-madeira) 0 36px, var(--brand-madeira-dark) 36px 41px);
+  /* Architectural line patterns for white bands (no gray fills anywhere) */
+  --pattern-brick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='36'%3E%3Cpath d='M0 .5H72M0 18.5H72M.5 0V18M36.5 18V36' fill='none' stroke='%23d9d9d9' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-herringbone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24L24 0M0 48L24 24M24 0L48 24M24 24L48 48M12 12L24 24M36 12L24 24M12 36L24 48M36 36L24 48' fill='none' stroke='%23d9d9d9' stroke-width='1'/%3E%3C/svg%3E");
 
   /* Buttons */
-  --btn-primary-bg: var(--brand-carvao);
-  --btn-primary-ink: var(--brand-nevoa);
-  --btn-primary-bg-hover: #2f2f2f;
+  --btn-primary-bg: var(--brand-carvao-deep);
+  --btn-primary-ink: #ffffff;
+  --btn-primary-bg-hover: #000000;
   --btn-accent-bg: var(--brand-hibisco);
-  --btn-accent-ink: var(--brand-carvao);
+  --btn-accent-ink: var(--brand-carvao-deep);
 
   /* --- Typography --- */
   --font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;   /* titles, labels, buttons */
@@ -64,11 +68,12 @@
   --button-transform: uppercase;
   --button-tracking: 0.2em;
 
-  /* --- Shape & depth: the plan is rectangular; only the canopy is round --- */
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-pill: 0;
+  /* --- Shape & depth: full-width bands are square; anything floating has soft corners --- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --radius-button: 10px;
   --shadow-soft: 0 14px 34px rgba(67, 67, 67, 0.12);
   --shadow-lift: 0 22px 50px rgba(67, 67, 67, 0.18);
 }

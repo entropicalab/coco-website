@@ -72,7 +72,8 @@ a:hover { text-decoration-thickness: 2px; }
 .container--narrow { width: min(100% - 2.5rem, 860px); margin-inline: auto; }
 .section { padding-block: clamp(4.5rem, 3rem + 6vw, 9rem); }
 .section--tight { padding-block: clamp(3rem, 2rem + 3vw, 5rem); }
-.section--alt { background: var(--color-bg-alt); }
+.section--alt { background-color: var(--color-bg-alt); background-image: var(--pattern-brick); }
+.section--herringbone { background-color: var(--color-bg-alt); background-image: var(--pattern-herringbone); }
 .section--inverse { background: var(--color-inverse-bg); color: var(--color-inverse-muted); }
 .section--inverse :is(h1, h2, h3, h4, .lede, a) { color: var(--color-inverse-ink); }
 .section--inverse .eyebrow { color: var(--color-highlight); }
@@ -91,7 +92,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.6em;
-  min-height: 54px; padding: 0.85rem 1.7rem; border-radius: var(--radius-pill);
+  min-height: 54px; padding: 0.85rem 1.7rem; border-radius: var(--radius-button);
   font-family: var(--font-display); font-weight: 500; font-size: 0.9rem;
   text-transform: var(--button-transform); letter-spacing: var(--button-tracking);
   text-decoration: none; border: 2px solid transparent;
@@ -113,7 +114,7 @@ a:hover { text-decoration-thickness: 2px; }
   border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600; line-height: 1.4;
   background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-line);
 }
-.tag--planned { background: var(--color-bg-alt); border-color: transparent; color: var(--color-accent-text); font-family: var(--font-accent); font-style: italic; font-weight: 400; font-size: 1rem; }
+.tag--planned { background: var(--color-surface); border-color: var(--color-accent); color: var(--color-accent-text); font-family: var(--font-accent); font-style: italic; font-weight: 400; font-size: 1rem; }
 .tag--ok { background: var(--color-botanic); border-color: transparent; color: var(--color-inverse-ink); }
 .tag--muted { color: var(--color-text-muted); }
 
@@ -129,7 +130,7 @@ a:hover { text-decoration-thickness: 2px; }
 .field :is(input, select, textarea):focus-visible { outline: 3px solid var(--color-focus); outline-offset: 1px; border-color: var(--color-ink); }
 
 /* ---------- Media ---------- */
-.frame { border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg-alt); }
+.frame { border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- Fins: louver texture, used once per layout on a wood field ---------- */
