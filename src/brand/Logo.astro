@@ -1,28 +1,31 @@
 ---
-// Brand logo: icon + wordmark. Replace the icon files in src/assets/brand/ to update it.
-// variant: "full" (icon + name) | "mark" (icon only). tone: "default" (on light) | "inverse" (on dark).
+// Brand logo: leaf mark + wordmark (Inter, all capitals, wide tracking).
+// variant: "full" (leaf + name) | "mark" (leaf only). tone: "default" (on light) | "inverse" (on dark).
 import { Image } from 'astro:assets';
-import iconInk from '../assets/brand/icon-ink.png';
-import iconLight from '../assets/brand/icon-light.png';
+import leafInk from '../assets/brand/leaf-ink.png';
+import leafLight from '../assets/brand/leaf-light.png';
 interface Props { variant?: 'full' | 'mark'; tone?: 'default' | 'inverse'; size?: number }
-const { variant = 'full', tone = 'default', size = 40 } = Astro.props;
-const icon = tone === 'inverse' ? iconLight : iconInk;
+const { variant = 'full', tone = 'default', size = 36 } = Astro.props;
+const leaf = tone === 'inverse' ? leafLight : leafInk;
 ---
 <span class:list={['logo', `logo--${tone}`]} style={`--logo-size:${size}px`}>
-  <Image class="logo__mark" src={icon} alt="" width={size * 2} height={size * 2} loading="eager" />
-  {variant === 'full' && <span class="logo__word">Coronado<br />Commons</span>}
+  <Image class="logo__mark" src={leaf} alt="" width={size * 2} height={size * 2} loading="eager" />
+  {variant === 'full' && <span class="logo__word">Coronado Commons</span>}
 </span>
 
 <style>
-  .logo { display: inline-flex; align-items: center; gap: 0.7em; color: var(--color-ink); }
+  .logo { display: inline-flex; align-items: center; gap: calc(var(--logo-size) * 0.45); color: var(--color-ink); }
   .logo--inverse { color: var(--color-inverse-ink); }
-  .logo :global(.logo__mark) { width: var(--logo-size); height: var(--logo-size); flex: none; }
+  .logo :global(.logo__mark) { width: var(--logo-size); height: var(--logo-size); flex: none; object-fit: contain; }
   .logo__word {
     font-family: var(--font-display);
-    font-size: calc(var(--logo-size) * 0.42);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    padding-left: 0.7em;
-    border-left: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    font-weight: 400;
+    font-size: max(0.8rem, calc(var(--logo-size) * 0.4));
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  @media (max-width: 480px) {
+    .logo__word { font-size: 0.7rem; letter-spacing: 0.2em; }
   }
 </style>

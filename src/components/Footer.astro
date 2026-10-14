@@ -35,10 +35,10 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .site-footer { padding-block: clamp(4rem, 3rem + 3vw, 6rem) 2.5rem; }
-  .site-footer__grid { display: grid; gap: 3rem; grid-template-columns: 1fr; padding-bottom: 3rem; border-bottom: 1px solid var(--color-inverse-bg-2); }
+  .site-footer { background: var(--color-footer-bg); padding-block: clamp(4rem, 3rem + 3vw, 6rem) 2.5rem; }
+  .site-footer__grid { display: grid; gap: 3rem; grid-template-columns: 1fr; padding-bottom: 3rem; border-bottom: 1px solid color-mix(in srgb, var(--color-inverse-ink) 25%, transparent); }
   @media (min-width: 860px) { .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } }
-  .site-footer__tag { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; color: var(--color-highlight); }
+  .site-footer__tag { font-family: var(--font-accent); font-style: italic; font-size: 1.6rem; color: var(--color-inverse-ink); }
   .site-footer ul { list-style: none; padding: 0; display: grid; gap: 0.35rem; }
   .site-footer ul a { text-decoration: none; display: inline-block; padding-block: 0.3rem; }
   .site-footer ul a:hover { text-decoration: underline; }

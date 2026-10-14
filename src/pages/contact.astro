@@ -1,22 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 import InquiryForm from '../components/InquiryForm.astro';
-import Motif from '../brand/Motif.astro';
+import Figure from '../components/Figure.astro';
+import portrait from '../assets/photos/portrait-garden.jpg';
 import site from '../data/site.json';
 ---
 <Base title="Inquire" description="Ask about residences or commercial units at Coronado Commons. We’ll send plans, prices and availability, and answer personally.">
   <section class="section">
     <div class="container contact">
       <div class="stack contact__intro">
-        <p class="eyebrow">Inquire</p>
-        <h1 class="h1">Let’s talk.</h1>
-        <p class="lede">Tell us a little about what you’re looking for. We’ll send plans, prices and availability, and answer your questions personally.</p>
+        <h1 class="h1">Book a visit <em>Let’s talk.</em></h1>
+        <p class="lede">Tell us a little about what you’re looking for. We’ll send plans and availability, answer your questions personally, and arrange a visit to the site and the town.</p>
         <div class="stack" style="--stack:0.4rem">
           <p class="muted">Or write to us directly:</p>
           <p><a class="text-link" href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a></p>
           {site.phone && <p><a class="text-link" href={`tel:${site.phone.replace(/[\s-]/g, '')}`}>{site.phone}</a></p>}
         </div>
-        <Motif class="contact__motif" />
+        <Figure src={portrait} alt="A smiling woman in a linen shirt in a sunlit garden." ratio="4/5" illustrative={false} widths={[400, 800]} sizes="(min-width: 1000px) 30vw, 100vw" class="contact__photo" />
       </div>
       <div class="contact__form">
         <InquiryForm id="contact-inquiry" />
@@ -39,6 +39,6 @@ import site from '../data/site.json';
   .contact { display: grid; gap: 3rem; align-items: start; }
   @media (min-width: 1000px) { .contact { grid-template-columns: 1fr 1.3fr; gap: 6rem; } }
   .contact__intro { position: relative; }
-  .contact :global(.contact__motif) { width: 220px; margin-top: 3rem; color: var(--color-ink); }
+  .contact :global(.contact__photo) { max-width: 360px; margin-top: 2.5rem; }
   .contact__form { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 3rem); }
 </style>

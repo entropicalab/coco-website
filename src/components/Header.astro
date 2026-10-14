@@ -9,7 +9,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
 <header class:list={['site-header', `site-header--${tone}`]} data-header>
   <div class="container site-header__inner">
     <a href="/" class="site-header__logo" aria-label={`${site.name} — home`}>
-      <Logo size={38} tone={tone === 'overlay' ? 'inverse' : 'default'} />
+      <Logo size={34} tone={tone === 'overlay' ? 'inverse' : 'default'} />
     </a>
 
     <nav aria-label="Main" class="site-nav" id="site-nav" data-nav>
@@ -18,7 +18,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
           <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
         ))}
       </ul>
-      <a href="/contact" class="btn btn--accent site-nav__cta">Inquire</a>
+      <a href="/contact" class="btn btn--accent site-nav__cta">Book a visit</a>
     </nav>
 
     <button class="site-header__toggle" aria-expanded="false" aria-controls="site-nav" data-toggle>
@@ -58,18 +58,22 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
   .site-header__logo { text-decoration: none; }
 
   .site-nav { display: flex; align-items: center; gap: 2rem; }
-  .site-nav ul { display: flex; gap: 1.75rem; list-style: none; padding: 0; }
-  .site-nav ul a { text-decoration: none; font-weight: 500; font-size: 1.02rem; color: var(--color-ink); padding-block: 0.6rem; border-bottom: 2px solid transparent; }
+  .site-nav ul { display: flex; gap: 1.6rem; list-style: none; padding: 0; }
+  .site-nav ul a { text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-ink); padding-block: 0.6rem; border-bottom: 2px solid transparent; }
   .site-nav ul a:hover, .site-nav ul a[aria-current='page'] { border-bottom-color: var(--color-accent); }
   .site-header--overlay:not(.is-scrolled):not(.is-open) .site-nav ul a { color: var(--color-inverse-ink); }
 
   .site-header__toggle { display: none; }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 480px) {
+    .site-header__toggle .label { display: none; }
+    .site-header__toggle { padding: 0 0.9rem; min-width: 48px; justify-content: center; }
+  }
+  @media (max-width: 1240px) {
     .site-header__toggle {
       display: inline-flex; align-items: center; gap: 0.6rem; min-height: 48px; padding: 0 1rem;
       border: 1.5px solid currentColor; border-radius: var(--radius-pill); background: transparent;
-      color: var(--color-ink); font-weight: 600; cursor: pointer;
+      color: var(--color-ink); font-family: var(--font-display); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.18em; cursor: pointer;
     }
     .site-header--overlay:not(.is-scrolled):not(.is-open) .site-header__toggle { color: var(--color-inverse-ink); }
     .bars, .bars::before, .bars::after { display: block; width: 18px; height: 2px; background: currentColor; position: relative; }
@@ -85,7 +89,9 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
     }
     .is-open .site-nav { display: flex; }
     .site-nav ul { flex-direction: column; gap: 0; }
-    .site-nav ul a { display: block; font-family: var(--font-display); font-size: 2rem; padding-block: 0.9rem; border-bottom: 1px solid var(--color-line); color: var(--color-ink) !important; }
+    .site-nav ul a { display: block; font-family: var(--font-display); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.2em; padding-block: 1.1rem; border-bottom: 1px solid var(--color-line); color: var(--color-ink) !important; }
     .site-nav__cta { align-self: flex-start; }
+    .site-header__inner { gap: 1rem; }
+    .site-header__toggle { flex: none; }
   }
 </style>

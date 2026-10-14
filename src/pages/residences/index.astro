@@ -10,12 +10,11 @@ import typical from '../../assets/plans/level-typical.jpg';
 const residences = (await getCollection('residences')).sort((a, b) => a.data.size - b.data.size);
 const counts = [1, 2, 3].map((n) => ({ n, count: residences.filter((r) => r.data.bedrooms === n).length }));
 ---
-<Base title="Residences" description={`${site.stats.residenceTypes} residence types at Coronado Commons, from ${site.stats.sizeMin} to ${site.stats.sizeMax} m², with one to three bedrooms. Every home faces the view.`}>
+<Base title="Residences" description={`${site.stats.residenceTypes} residence types at Coronado Commons, from ${site.stats.sizeMin} to ${site.stats.sizeMax} m², with one to three bedrooms. Every home faces the light.`}>
   <section class="section section--tight">
     <div class="container section-head" style="margin-bottom:0">
-      <p class="eyebrow">The residences</p>
-      <h1 class="h1">Find the home that fits.</h1>
-      <p class="lede">{site.stats.residenceTypes} layouts from {site.stats.sizeMin} to {site.stats.sizeMax} m². Every one has a terrace, a guest bathroom, step-free access and a view to the south.</p>
+      <h1 class="h1">The homes <em>Find the one that fits.</em></h1>
+      <p class="lede">{site.stats.residenceTypes} layouts from {site.stats.sizeMin} to {site.stats.sizeMax} m². Every one has a terrace, a guest bathroom, step-free access and windows to the south.</p>
     </div>
   </section>
 
@@ -41,15 +40,14 @@ const counts = [1, 2, 3].map((n) => ({ n, count: residences.filter((r) => r.data
   <section class="section section--alt">
     <div class="container stack" style="--stack:2rem">
       <div class="section-head" style="margin-bottom:0">
-        <p class="eyebrow">A typical floor</p>
-        <h2 class="h2">Nine homes in a row, all facing the same way.</h2>
+        <h2 class="h2">A typical floor <em>Nine homes in a row, all facing the light.</em></h2>
         <p>Each residential floor holds nine homes along the south side. Shared walkways run along the north, and the atrium opens in the middle.</p>
       </div>
       <Figure src={typical} alt="Plan of a typical residential floor: nine apartments side by side along one long facade, with an open atrium at the centre." illustrative={false} caption="Typical residential floor. The plan may change during design development." />
     </div>
   </section>
 
-  <CtaBand title="Ask for plans and prices." interest="A residence" />
+  <CtaBand title="Ask for plans and availability." interest="A residence" />
 </Base>
 
 <script>

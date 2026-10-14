@@ -4,7 +4,8 @@ import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
 import site from '../data/site.json';
 import aerial from '../assets/location/aerial.jpg';
-import horizon from '../assets/drone/view-horizon.jpg';
+import winter from '../assets/photos/leaving-winter.jpg';
+import palm from '../assets/photos/coconut-palm.jpg';
 
 const nearby = [
   { what: 'Supermarkets, banks & pharmacies', where: 'A few minutes away' },
@@ -17,22 +18,20 @@ const nearby = [
 <Base title="Coronado, Panamá" description="Why Coronado: one of Panamá’s most established Pacific-coast towns, with a large international community, everyday services close by, and Panama City about an hour away.">
   <section class="section section--tight">
     <div class="container section-head">
-      <p class="eyebrow">Location</p>
-      <h1 class="h1">Coronado, <em>Panamá.</em></h1>
-      <p class="lede">An established beach town on the Pacific coast, where Panamanian families and people from all over the world have been settling for decades.</p>
+      <h1 class="h1">Coronado, Panamá <em>An established beach town on the Pacific coast.</em></h1>
+      <p class="lede">Panamanian families and people from all over the world have been settling here for decades.</p>
     </div>
     <div class="container">
-      <Figure src={aerial} alt="Aerial photo of Coronado: low-rise homes among dense tropical trees." ratio="21/9" illustrative={false} loading="eager" />
+      <Figure src={aerial} alt="Aerial view of Coronado: low-rise homes among dense tropical trees." ratio="21/9" illustrative={false} loading="eager" />
     </div>
   </section>
 
   <section class="section">
     <div class="container split">
       <div class="stack">
-        <p class="eyebrow">Why here</p>
-        <h2 class="h2">A real town, already working.</h2>
-        <p>Coronado isn’t a resort that needs time to fill in. It has supermarkets, banks, restaurants, clinics and a large, friendly international community — the kind of place where you can arrive and have a life within weeks.</p>
-        <p>Panamá offers a warm climate all year, the US dollar as its currency, and a well-known residency programme for retirees.</p>
+        <h2 class="h2">Why here <em>A real town, already working.</em></h2>
+        <p>Coronado isn’t a resort that needs time to fill in. It has supermarkets, banks, restaurants, clinics and a large, friendly international community: the kind of place where you can arrive and have a life within weeks.</p>
+        <p>Panamá uses the US dollar, and has a well-known residency programme for retirees.</p>
       </div>
       <dl class="nearby">
         {nearby.map((n) => <div><dt>{n.what}</dt><dd>{n.where}</dd></div>)}
@@ -41,14 +40,23 @@ const nearby = [
   </section>
 
   <section class="section section--alt">
-    <div class="container split split--wide-left">
-      <Figure src={horizon} alt="Drone photo from the site: green lawns and treetops under a wide sky, with distant buildings on the horizon." ratio="4/3" illustrative={false} caption="Drone photo taken over the site." />
+    <div class="container split split--wide-right">
+      <Figure src={winter} alt="A man in a bright shirt dancing beside a packed suitcase, with snow falling outside the window." ratio="4/5" illustrative={false} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
       <div class="stack">
-        <p class="eyebrow">The site</p>
-        <h2 class="h2">On {site.address.street}.</h2>
-        <p>The building sits on Coronado’s main avenue, close to everyday services. To the south lie the wide, treed grounds of the neighbouring property — the green outlook every home faces.</p>
-        <p class="muted small">Exact address and directions are shared on request.</p>
+        <h2 class="h2">Warm all year <em>Leave the winter coat behind.</em></h2>
+        <p>Coronado has no winter to plan around. Days are warm the whole year, with a dry season from December to April, and the building is designed for the climate: shade, cross-breezes and planting do much of the cooling.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--wide-left">
+      <div class="stack">
+        <h2 class="h2">The site <em>On {site.address.street}.</em></h2>
+        <p>The building sits on Coronado’s main avenue, close to everyday services, with shops, clinics and restaurants within a short walk.</p>
+        <p class="muted small">Exact address and directions are shared when you book a visit.</p>
+      </div>
+      <Figure src={palm} alt="A coconut palm heavy with fruit against a clear sky." ratio="4/5" illustrative={false} widths={[480, 768]} sizes="(min-width: 900px) 35vw, 100vw" class="tall" />
     </div>
   </section>
 
@@ -58,6 +66,7 @@ const nearby = [
 <style>
   .nearby { display: grid; border-top: 1px solid var(--color-line); }
   .nearby > div { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); }
-  .nearby dt { color: var(--color-ink); font-weight: 600; }
+  .nearby dt { color: var(--color-ink); font-weight: 500; }
   .nearby dd { color: var(--color-text-muted); text-align: right; }
+  .split :global(.tall) { max-width: 440px; width: 100%; justify-self: center; }
 </style>

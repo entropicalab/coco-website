@@ -3,29 +3,27 @@ import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-import cafe from '../assets/renders/cafe-bookstore.jpg';
-import walk from '../assets/renders/ground-walk.jpg';
-import atrium from '../assets/renders/atrium-watercolor.jpg';
+import friends from '../assets/photos/friends-fruit.jpg';
+import dancing from '../assets/photos/dancing-garden.jpg';
+import fruit from '../assets/photos/fruit-bowl.jpg';
 
 const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base title="Living Here" description="Daily life at Coronado Commons: your own home, neighbours you know by name, a garden atrium, and a café, bookstore and pharmacy planned downstairs.">
   <section class="section section--tight">
     <div class="container section-head">
-      <p class="eyebrow">Living here</p>
-      <h1 class="h1">Your own life. <em>Good company.</em></h1>
+      <h1 class="h1">Living here <em>Your own life, and good company.</em></h1>
       <p class="lede">You keep your own front door, your own kitchen and your own routine. What changes is everything just outside it.</p>
     </div>
     <div class="container">
-      <Figure src={atrium} alt="Watercolour of the garden atrium with planting on several levels and neighbours passing on the walkways." ratio="21/9" loading="eager" />
+      <Figure src={friends} alt="Friends laughing around a garden table with a bowl of tropical fruit." ratio="16/7" illustrative={false} loading="eager" />
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">A day at CoCo</p>
-        <h2 class="h2">Nothing is scheduled. Everything is close.</h2>
+        <h2 class="h2">A day at CoCo <em>Nothing is scheduled. Everything is close.</em></h2>
       </div>
       <ol class="day">
         <li><span class="day__time">Morning</span><p>Coffee on your terrace as the light comes over the trees. Then downstairs for a second one at the café, where someone has saved you the paper.</p></li>
@@ -39,8 +37,7 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
   <section class="section section--alt">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Shared spaces &amp; services</p>
-        <h2 class="h2">What’s in the building.</h2>
+        <h2 class="h2">Shared spaces <em>What’s in the building.</em></h2>
         <p class="muted">Items marked <span class="tag tag--planned">Planned</span> are part of the concept and not yet confirmed.</p>
       </div>
       <div class="grid" style="--min:280px">
@@ -59,10 +56,9 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
 
   <section class="section">
     <div class="container split">
-      <Figure src={cafe} alt="Watercolour of the planned café and bookstore, with reading chairs and shelves behind glass walls." ratio="4/3" />
+      <Figure src={dancing} alt="A resident dancing in the garden in front of a building with timber and screen walls." ratio="4/5" illustrative={false} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
       <div class="stack">
-        <p class="eyebrow">Wellbeing, without the clinic</p>
-        <h2 class="h2">Health follows from how you live.</h2>
+        <h2 class="h2">Wellbeing <em>Health follows from how you live.</em></h2>
         <p>Walking to town. Daylight in every room. Fresh air through the walkways. A reason to get out of the house and someone to say good morning to. We designed for these things first — they matter more than any gym.</p>
         <p>And when you do need care, Coronado’s clinics and pharmacies are close by.</p>
       </div>
@@ -71,7 +67,7 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
 
   <section class="section section--alt">
     <div class="container">
-      <Figure src={walk} alt="Watercolour of the planted ground-floor walkway under a timber canopy." ratio="21/9" />
+      <Figure src={fruit} alt="A bowl of papaya, bananas, passion fruit and dragon fruit on a timber table." ratio="21/9" illustrative={false} />
     </div>
   </section>
 
@@ -79,10 +75,11 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
 </Base>
 
 <style>
+  .split :global(.tall) { max-width: 440px; width: 100%; justify-self: center; }
   .day { list-style: none; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--color-line); }
   .day li { display: grid; gap: 0.5rem 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--color-line); max-width: none; }
   @media (min-width: 760px) { .day li { grid-template-columns: 12rem 1fr; } }
-  .day__time { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: var(--color-botanic); }
+  .day__time { font-family: var(--font-accent); font-style: italic; font-size: 1.7rem; color: var(--color-accent-text); }
   .amenity { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 1.6rem; display: grid; gap: 0.75rem; align-content: start; }
   .amenity__top { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
 </style>

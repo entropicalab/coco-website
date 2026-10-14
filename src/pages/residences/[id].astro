@@ -39,7 +39,7 @@ const jsonLd = {
 ---
 <Base
   title={`${data.name} · ${bedroomLabel(data.bedrooms)}, ${data.size} m²`}
-  description={`${data.name} at Coronado Commons: ${bedroomLabel(data.bedrooms)}, about ${data.size} m² with terrace, facing the view. ${formatPrice(price)}.`}
+  description={`${data.name} at Coronado Commons: ${bedroomLabel(data.bedrooms)}, about ${data.size} m² with terrace, facing the light. ${formatPrice(price)}.`}
   ogImage={interior}
   jsonLd={jsonLd}
 >
@@ -49,8 +49,7 @@ const jsonLd = {
 
       <div class="rhead">
         <div class="stack">
-          <p class="eyebrow">{bedroomLabel(data.bedrooms)}</p>
-          <h1 class="h1">{data.name}</h1>
+          <h1 class="h1">{data.name} <em>{bedroomLabel(data.bedrooms)}, about {data.size} m².</em></h1>
           <p class="lede">{data.summary}</p>
         </div>
         <aside class="spec" aria-label="Key details">
@@ -58,7 +57,7 @@ const jsonLd = {
             <div><dt>Size</dt><dd>{formatArea(data.size)}<span class="small muted">Approx., incl. terrace</span></dd></div>
             <div><dt>Bedrooms</dt><dd>{data.bedrooms}</dd></div>
             {data.bathrooms && <div><dt>Bathrooms</dt><dd>{data.bathrooms}</dd></div>}
-            <div><dt>Orientation</dt><dd>South, to the view</dd></div>
+            <div><dt>Orientation</dt><dd>South, toward the light</dd></div>
             <div><dt>Price</dt><dd class="spec__price">{formatPrice(price)}{price != null && <span class="small muted">{formatRate(rate)}</span>}</dd></div>
             <div><dt>Status</dt><dd>{statusLabel[data.status]}</dd></div>
           </dl>
@@ -102,8 +101,7 @@ const jsonLd = {
   <section class="section" id="inquire">
     <div class="container--narrow stack" style="--stack:2rem">
       <div class="stack">
-        <p class="eyebrow">Inquire</p>
-        <h2 class="h2">Ask about {data.name}.</h2>
+        <h2 class="h2">Inquire <em>Ask about {data.name}.</em></h2>
         <p>We’ll send the full plan, current price and which floors are available.</p>
       </div>
       <InquiryForm interest={data.name} id="residence-inquiry" />

@@ -8,10 +8,10 @@
   summary: A planted, daylit atrium rises through every floor. Every front door opens onto it, so you pass neighbours on the way to the lift — not in a hallway.
 
 - id: view
-  name: The view
+  name: Light and air
   order: 2
   confirmed: true
-  summary: Every home faces south, over the protected treed grounds next door toward the coast. No home looks onto a wall.
+  summary: Every home faces south, toward the light, with an open walkway behind it for the breeze. No home looks onto a corridor or a wall.
 
 - id: solar
   name: Solar power

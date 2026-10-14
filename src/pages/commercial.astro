@@ -15,8 +15,7 @@ const total = units.reduce((t, u) => t + u.data.size, 0);
   <section class="section section--tight">
     <div class="container split split--wide-left">
       <div class="section-head" style="margin-bottom:0">
-        <p class="eyebrow">For businesses</p>
-        <h1 class="h1">Open your doors <em>on the avenue.</em></h1>
+        <h1 class="h1">Commercial units <em>Open your doors on the avenue.</em></h1>
         <p class="lede">{units.length} ground-floor units, about {total} m² in all, on Coronado’s main avenue — with {site.stats.residences} households upstairs and the whole town outside.</p>
         <div class="btn-row"><a class="btn btn--primary" href="#inquire">Ask about a unit</a></div>
       </div>
@@ -27,7 +26,7 @@ const total = units.reduce((t, u) => t + u.data.size, 0);
   <section class="section section--alt">
     <div class="container">
       <div class="section-head">
-        <h2 class="h2">Available units</h2>
+        <h2 class="h2">Available units <em>Delivered as grey shell, ready for your fit-out.</em></h2>
         <p>Units are delivered as grey shell, ready for your own fit-out. Suggested uses reflect the building’s concept and are open to discussion.</p>
       </div>
       <div class="table-wrap">
@@ -53,8 +52,7 @@ const total = units.reduce((t, u) => t + u.data.size, 0);
   <section class="section">
     <div class="container stack" style="--stack:2rem">
       <div class="section-head" style="margin-bottom:0">
-        <p class="eyebrow">Ground floor plan</p>
-        <h2 class="h2">Built around the atrium.</h2>
+        <h2 class="h2">Ground floor <em>Built around the atrium.</em></h2>
         <p>The units line the avenue frontage and the building’s length, with the lobby and garden atrium at the centre bringing residents past your door every day.</p>
       </div>
       <Figure src={ground} alt="Ground floor plan showing five commercial units around the central lobby and atrium." illustrative={false} />
@@ -64,8 +62,7 @@ const total = units.reduce((t, u) => t + u.data.size, 0);
   <section class="section section--alt" id="inquire">
     <div class="container--narrow stack" style="--stack:2rem">
       <div class="stack">
-        <p class="eyebrow">Inquire</p>
-        <h2 class="h2">Tell us about your business.</h2>
+        <h2 class="h2">Inquire <em>Tell us about your business.</em></h2>
         <p>Whether you want to buy or operate, we’d like to hear what you have in mind.</p>
       </div>
       <InquiryForm interest="Commercial unit" id="commercial-inquiry" />
@@ -78,6 +75,6 @@ const total = units.reduce((t, u) => t + u.data.size, 0);
   .units { width: 100%; border-collapse: collapse; min-width: 640px; }
   .units :is(th, td) { text-align: left; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-line); }
   .units thead th { font-size: 0.85rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; color: var(--color-text-muted); font-weight: 600; }
-  .units tbody th { color: var(--color-ink); font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; }
+  .units tbody th { color: var(--color-ink); font-family: var(--font-display); font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; }
   .units tbody tr:last-child :is(th, td) { border-bottom: 0; }
 </style>

@@ -3,16 +3,18 @@ import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import ResidenceCard from '../components/ResidenceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Motif from '../brand/Motif.astro';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
-import { formatPrice, formatRate, residencePrice } from '../lib/format';
+import { formatPrice, residencePrice } from '../lib/format';
 
-import hero from '../assets/renders/facade.jpg';
+import facade from '../assets/renders/facade.jpg';
 import atrium from '../assets/renders/atrium.jpg';
-import entrance from '../assets/renders/entrance-garden.jpg';
+import walkway from '../assets/renders/walkway.jpg';
 import cafe from '../assets/renders/cafe-bookstore.jpg';
 import aerial from '../assets/location/aerial.jpg';
-import viewPhoto from '../assets/drone/view-green.jpg';
+import couple from '../assets/photos/couple-bench.jpg';
+import friends from '../assets/photos/couple-garden-table.jpg';
 
 const residences = (await getCollection('residences')).sort((a, b) => a.data.size - b.data.size);
 // One of each bedroom count for the teaser
@@ -23,19 +25,22 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
 const s = site.stats;
 ---
 <Base>
-  <!-- Hero -->
+  <!-- Hero: the plan (text) beside the building, one canopy crossing the corner -->
   <section class="hero">
     <div class="container hero__grid">
-      <div class="hero__text">
-        <p class="eyebrow">Coronado · Panamá</p>
-        <h1 class="display">Live independently <em>without living alone.</em></h1>
-        <p class="lede">{s.residences} homes on Panamá’s Pacific coast, designed for life after sixty. Every one faces the view, and every front door opens onto a shared garden atrium.</p>
+      <div class="hero__plan">
+        <p class="eyebrow">Coronado, Panamá</p>
+        <h1 class="display">Independent living, together <em>{s.residences} homes around a garden, designed for life after sixty.</em></h1>
+        <p class="hero__lede">Your own front door, your own routine, and good company a few steps away. Open to anyone; designed, detail by detail, for the decades ahead.</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="/residences">Explore the residences</a>
-          <a class="btn btn--ghost" href="/contact">Inquire</a>
+          <a class="btn btn--accent" href="/contact">Book a visit</a>
+          <a class="hero__link" href="/the-building">Explore the building</a>
         </div>
       </div>
-      <Figure src={hero} alt="Watercolour of Coronado Commons from the street: a five-storey building with planted balconies, warm timber panels and parking under a canopy." ratio="5/7" loading="eager" widths={[480, 843]} sizes="(min-width: 1000px) 40vw, 100vw" class="hero__img" />
+      <div class="hero__media">
+        <Figure src={facade} alt="Watercolour of Coronado Commons from the street: a five-storey building with planted balconies, warm timber panels and parking under a canopy." ratio="5/6" loading="eager" widths={[480, 843]} sizes="(min-width: 1000px) 42vw, 100vw" />
+        <Motif class="hero__canopy" />
+      </div>
     </div>
   </section>
 
@@ -46,50 +51,46 @@ const s = site.stats;
         <div><dt>Residences</dt><dd>{s.residences}</dd></div>
         <div><dt>Sizes</dt><dd>{s.sizeMin}–{s.sizeMax}<small> m²</small></dd></div>
         <div><dt>Bedrooms</dt><dd>{s.bedroomsMin}–{s.bedroomsMax}</dd></div>
-        <div><dt>Prices</dt><dd class="facts__price">{lowest ? formatPrice(lowest) : 'On request'}{lowest && site.pricing.residentialPerM2 && <small class="facts__rate">{formatRate()}</small>}</dd></div>
+        <div><dt>Prices</dt><dd class="facts__price">{lowest ? formatPrice(lowest) : 'On request'}</dd></div>
       </dl>
     </div>
   </section>
 
   <!-- Who it's for -->
   <section class="section">
-    <div class="container split split--wide-right">
+    <div class="container split split--wide-left">
+      <Figure src={couple} alt="Two residents laughing together on a garden bench, among tropical plants and a screen wall." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 55vw, 100vw" />
       <div class="stack">
-        <p class="eyebrow">Who it’s for</p>
-        <h2 class="h2">Designed for life after sixty. <em>Open to anyone.</em></h2>
-      </div>
-      <div class="stack">
-        <p class="lede">Coronado Commons is built for people who want their own home, their own routine and their own front door — with good company a few steps away.</p>
-        <p>It isn’t assisted living, and it isn’t a resort. It’s a small neighbourhood in one building: step-free from the street to your terrace, walkable to Coronado’s shops, banks and clinics, and arranged so that seeing your neighbours is part of the day rather than an appointment. Anyone can buy here. We simply designed it, detail by detail, for the decades after sixty.</p>
+        <h2 class="h2">Built for a long life <em>Designed for life after sixty. Open to anyone.</em></h2>
+        <p>Coronado Commons is for people who want their own home and their own routine, with neighbours they know by name. It isn’t assisted living, and it isn’t a resort.</p>
+        <p>It’s a small neighbourhood in one building: step-free from the street to your terrace, walkable to Coronado’s shops, banks and clinics, and arranged so that seeing people is part of the day rather than an appointment.</p>
       </div>
     </div>
   </section>
 
-  <!-- The view -->
+  <!-- Shade, light and air -->
   <section class="section section--alt">
-    <div class="container split split--wide-left">
-      <Figure src={viewPhoto} alt="Drone photo over the site: open lawns and dense tropical trees stretching to the horizon." ratio="4/3" illustrative={false} caption="Drone photo taken over the site." sizes="(min-width: 900px) 55vw, 100vw" />
+    <div class="container split split--wide-right">
       <div class="stack">
-        <p class="eyebrow">The view</p>
-        <h2 class="h2">Every home faces the view.</h2>
-        <p>The building is one home deep. Shared walkways run along the back, so every residence looks south — over the protected, tree-filled grounds next door and toward the coast.</p>
-        <p>No home looks into another. None faces a wall. Morning light, the sea breeze and the treetops belong to everyone.</p>
-        <p><a class="text-link" href="/the-building">More about the building</a></p>
+        <h2 class="h2">Shade, light and air <em>The building handles the heat. You enjoy the day.</em></h2>
+        <p>The building is one home deep. Every residence faces south, toward the light, and an open walkway runs behind it to catch the breeze. Air moves through every home, and deep shade keeps the terraces comfortable at midday.</p>
+        <p>No home looks onto a corridor. None faces a wall.</p>
+        <p><a class="text-link" href="/the-building">How the building works</a></p>
       </div>
+      <Figure src={walkway} alt="Watercolour of the open-air walkway: brick paving under a timber ceiling, with planting along the rail." ratio="4/5" widths={[480, 940]} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
     </div>
   </section>
 
   <!-- The commons -->
-  <section class="section commons">
+  <section class="section">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">The commons</p>
-        <h2 class="h1">{s.residences} homes. <em>Never more than forty neighbours.</em></h2>
-        <p class="lede">At the centre of the building, a daylit garden atrium rises through every floor. Your front door opens onto it. You cross it on the way to the lift, to the café, to the street — and that’s where you get to know people.</p>
+        <h2 class="h1">A garden at the centre <em>{s.residences} homes. Never more than forty neighbours.</em></h2>
+        <p class="lede">A daylit garden atrium rises through every floor. Your front door opens onto it. You cross it on the way to the lift, to the café and to the street, and that’s where you get to know people.</p>
       </div>
       <div class="commons__media">
-        <Figure src={atrium} alt="Watercolour of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/9" sizes="(min-width: 900px) 62vw, 100vw" />
-        <Figure src={entrance} alt="Watercolour of the garden entrance with timber soffits, stone walls and lush planting." ratio="4/5" sizes="(min-width: 900px) 32vw, 100vw" class="commons__side" />
+        <Figure src={atrium} alt="Watercolour of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/10" sizes="(min-width: 900px) 62vw, 100vw" />
+        <Figure src={friends} alt="Two friends talking over iced drinks at a garden table." ratio="4/5" illustrative={false} sizes="(min-width: 900px) 32vw, 100vw" />
       </div>
     </div>
   </section>
@@ -98,14 +99,13 @@ const s = site.stats;
   <section class="section section--alt">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">The residences</p>
-        <h2 class="h2">Nine layouts, one to three bedrooms.</h2>
-        <p>From an easy one-bedroom of {s.sizeMin} m² to three-bedroom homes of up to {s.sizeMax} m², with room for family when they visit. Every home has a terrace on the view side.</p>
+        <h2 class="h2">The homes <em>Nine layouts, one to three bedrooms.</em></h2>
+        <p>From an easy one-bedroom of {s.sizeMin} m² to three-bedroom homes of up to {s.sizeMax} m², with room for family when they visit. Every home has a terrace.</p>
       </div>
       <div class="grid" style="--min:300px">
         {teaser.map((r) => <ResidenceCard residence={r} />)}
       </div>
-      <p style="margin-top:2.5rem"><a class="btn btn--primary" href="/residences">See all {s.residenceTypes} residence types</a></p>
+      <p style="margin-top:2.5rem"><a class="btn btn--primary" href="/residences">See all {s.residenceTypes} homes</a></p>
     </div>
   </section>
 
@@ -113,9 +113,8 @@ const s = site.stats;
   <section class="section">
     <div class="container split split--wide-right">
       <div class="stack">
-        <p class="eyebrow">Living here</p>
-        <h2 class="h2">Your morning coffee is downstairs.</h2>
-        <p>The ground floor is planned as a small high street of its own — a café, a bookstore and a pharmacy — open to residents and the town. Upstairs, a rooftop room for classes and evenings above the trees.</p>
+        <h2 class="h2">Living here <em>Your morning coffee is downstairs.</em></h2>
+        <p>The ground floor is planned as a small high street of its own, with a café, a bookstore and a pharmacy, open to residents and the town. Upstairs, a rooftop room for classes and evenings above the trees.</p>
         <ul class="amen">
           {amenities.slice(0, 7).map((a) => (
             <li>
@@ -131,27 +130,27 @@ const s = site.stats;
   </section>
 
   <!-- Coronado -->
-  <section class="section section--inverse location">
+  <section class="section section--alt">
     <div class="container split">
+      <Figure src={aerial} alt="Aerial view of Coronado: low-rise neighbourhoods among dense tropical trees." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 50vw, 100vw" />
       <div class="stack">
-        <p class="eyebrow">Coronado, Panamá</p>
-        <h2 class="h2">An established town, not a gamble.</h2>
-        <p>Coronado is one of Panamá’s most settled coastal communities, with a large international population, supermarkets, banks, clinics and the beach all close by. Panama City is a little over an hour away by highway.</p>
+        <h2 class="h2">Coronado, Panamá <em>An established town, already working.</em></h2>
+        <p>Coronado is one of Panamá’s most settled coastal communities, with a large international population, and supermarkets, banks, clinics and the beach close by. Panama City is about an hour and a quarter away by highway.</p>
         <p><a class="text-link" href="/coronado">Why Coronado</a></p>
       </div>
-      <Figure src={aerial} alt="Aerial view of Coronado: low-rise neighbourhoods among dense tropical trees." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 50vw, 100vw" />
     </div>
   </section>
 
-  <!-- Commercial teaser -->
+  <!-- Commercial teaser: the one wood field with fins -->
   <section class="section--tight">
-    <div class="container commercial-teaser">
-      <div class="stack" style="--stack:.75rem">
-        <p class="eyebrow">For businesses</p>
-        <h2 class="h3">Ground-floor commercial units, about {s.commercialArea} m² in all.</h2>
-        <p class="muted">For operators and owners who want to serve a building of residents and the town around it.</p>
+    <div class="container">
+      <div class="commercial-teaser fins">
+        <div class="commercial-teaser__plan stack" style="--stack:.75rem">
+          <h2 class="h3">For businesses</h2>
+          <p>Ground-floor commercial units, about {s.commercialArea} m² in all, for operators and owners who want to serve the building and the town around it.</p>
+          <p><a class="btn btn--accent" href="/commercial">Commercial units</a></p>
+        </div>
       </div>
-      <a class="btn btn--ghost" href="/commercial">Commercial opportunities</a>
     </div>
   </section>
 
@@ -159,35 +158,45 @@ const s = site.stats;
 </Base>
 
 <style>
-  .hero { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) clamp(2rem, 1rem + 3vw, 4rem); }
-  .hero__grid { display: grid; gap: clamp(2.5rem, 2rem + 2vw, 4rem); align-items: center; }
-  .hero__text { display: grid; gap: 1.75rem; justify-items: start; }
-  .hero__text .display { max-width: 12ch; }
-  .hero__text .lede { max-width: 34ch; }
+  /* Hero */
+  .hero { padding-block: clamp(2rem, 1rem + 3vw, 4.5rem) clamp(2rem, 1rem + 3vw, 4rem); overflow: hidden; }
+  .hero__grid { display: grid; gap: 0; align-items: stretch; }
+  .hero__plan {
+    background: var(--color-inverse-bg); color: var(--color-inverse-ink);
+    padding: clamp(2rem, 1.2rem + 3vw, 4.5rem); display: grid; gap: 1.6rem; align-content: center;
+  }
+  .hero__plan .eyebrow { color: var(--color-highlight); }
+  .hero__plan .display { color: var(--color-inverse-ink); max-width: 16ch; }
+  .hero__plan .display em { max-width: 26ch; }
+  .hero__lede { color: var(--color-inverse-muted); max-width: 40ch; }
+  .hero__link { color: var(--color-inverse-ink); font-family: var(--font-display); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; text-decoration: none; padding: 0.9rem 0.25rem; border-bottom: 2px solid transparent; }
+  .hero__link:hover { border-bottom-color: var(--color-highlight); }
+  .hero__media { position: relative; }
+  .hero__media :global(.figure) { height: 100%; }
+  .hero__media :global(.figure__media) { height: 100%; }
+  .hero :global(.hero__canopy) { position: absolute; width: clamp(140px, 22vw, 300px); right: -60px; top: -60px; z-index: -0; mix-blend-mode: multiply; }
   @media (min-width: 1000px) {
-    .hero__grid { grid-template-columns: 1.25fr 1fr; }
-    .hero :global(.hero__img) { max-width: 520px; justify-self: end; width: 100%; }
+    .hero__grid { grid-template-columns: 1.15fr 1fr; }
+    .hero :global(.hero__canopy) { right: -110px; top: -90px; }
   }
 
   .facts { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
   @media (min-width: 800px) { .facts { grid-template-columns: repeat(4, 1fr); } }
-  .facts > div { padding: 1.5rem 1rem 1.5rem 0; display: grid; gap: 0.25rem; }
-  .facts dt { font-size: 0.85rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; font-weight: 600; color: var(--color-text-muted); }
-  .facts dd { font-family: var(--font-display); font-size: clamp(2rem, 1.5rem + 1.6vw, 3rem); color: var(--color-ink); line-height: 1.1; }
+  .facts > div { padding: 1.5rem 1rem 1.5rem 0; display: grid; gap: 0.35rem; }
+  .facts dt { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; font-weight: 500; color: var(--color-accent-text); }
+  .facts dd { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.06em; font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem); color: var(--color-ink); line-height: 1.1; }
   .facts dd small { font-size: 0.5em; }
-  .facts__price { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 2rem) !important; display: grid; }
-  .facts dd .facts__rate { font-family: var(--font-body); font-size: 1rem; color: var(--color-text-muted); }
+  .facts__price { font-family: var(--font-accent) !important; font-style: italic; letter-spacing: 0 !important; font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem) !important; }
+
+  .split :global(.tall) { max-width: 460px; width: 100%; justify-self: center; }
 
   .commons__media { display: grid; gap: clamp(1rem, 0.5rem + 1.5vw, 2rem); }
-  @media (min-width: 900px) {
-    .commons__media { grid-template-columns: 2fr 1fr; align-items: end; }
-  }
+  @media (min-width: 900px) { .commons__media { grid-template-columns: 2fr 1fr; align-items: end; } }
 
   .amen { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
   .amen li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--color-line); color: var(--color-ink); max-width: none; }
 
-  .location { position: relative; overflow: hidden; }
-  .location .container { position: relative; z-index: 1; }
-
-  .commercial-teaser { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; padding: clamp(2rem, 1.5rem + 2vw, 3rem); border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
+  .commercial-teaser { padding: clamp(1.25rem, 1rem + 2vw, 2.5rem); }
+  .commercial-teaser__plan { background: var(--color-inverse-bg); color: var(--color-inverse-ink); padding: clamp(1.75rem, 1.2rem + 2vw, 3rem); max-width: 36rem; }
+  .commercial-teaser__plan .h3 { color: var(--color-inverse-ink); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 400; }
 </style>

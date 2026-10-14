@@ -4,65 +4,71 @@
    Rebrand = change the values in this file (and src/brand/*). Nothing else.
    Components only ever use the semantic names on the left.
 
-   Current values: CoCo Brand Book v1 (23 Jul 2026).
+   Current values: brand book v3 (Oct 2026), "canopy over plan".
    ========================================================================== */
 
 :root {
   /* --- Raw palette (brand book names) — referenced only inside this file --- */
-  --brand-blueberry: #2d3e56;
-  --brand-blueberry-2: #3c506c;
-  --brand-cream: #f5eedf;
-  --brand-caramel: #de8b39;
-  --brand-caramel-deep: #94501a; /* AA-safe text version of caramel on cream */
-  --brand-banana: #eedca7;
-  --brand-mint: #afcbb2;
-  --brand-forest: #47624d;
-  --brand-sand: #e4d6c0;
-  --brand-espresso: #3a2a20;
-  --brand-mist: #c9d3de;
+  --brand-carvao: #434343;     /* base: charcoal */
+  --brand-nevoa: #eeeeee;      /* base: off-white */
+  --brand-madeira: #7d4f2c;    /* wood */
+  --brand-madeira-dark: #5e3a1f;
+  --brand-bananeira: #737940;  /* banana leaf */
+  --brand-coco: #4c4b24;       /* deep green */
+  --brand-cobalto: #1c3261;    /* pop */
+  --brand-rosa: #e08687;       /* pop */
+  --brand-hibisco: #d5a785;    /* pop */
+  --brand-agua: #90a39b;       /* pop */
 
   /* --- Semantic colors (use these in components) --- */
-  --color-bg: var(--brand-cream);            /* page background */
-  --color-bg-alt: #efe5d1;                   /* alternating section background */
-  --color-surface: #fffdf8;                  /* cards, form fields */
-  --color-ink: var(--brand-blueberry);       /* headings, primary text */
-  --color-text: #33302b;                     /* long-form body text */
-  --color-text-muted: #6b6255;               /* secondary text (AA on bg) */
-  --color-line: var(--brand-sand);           /* hairlines, borders */
-  --color-accent: var(--brand-caramel);      /* decorative accent: rules, dots, icons */
-  --color-accent-text: var(--brand-caramel-deep); /* accent used as text (eyebrows) */
-  --color-on-accent: var(--brand-espresso);  /* text placed on --color-accent */
-  --color-highlight: var(--brand-banana);    /* soft highlight fields */
-  --color-botanic: var(--brand-forest);      /* secondary accent: tags, "confirmed" */
-  --color-botanic-soft: var(--brand-mint);
-  --color-inverse-bg: var(--brand-blueberry);/* dark sections, footer */
-  --color-inverse-bg-2: var(--brand-blueberry-2);
-  --color-inverse-ink: var(--brand-cream);
-  --color-inverse-muted: var(--brand-mist);
-  --color-focus: var(--brand-caramel);
+  --color-bg: #ffffff;                    /* page background */
+  --color-bg-alt: var(--brand-nevoa);     /* alternating section background */
+  --color-surface: #ffffff;               /* cards, form fields */
+  --color-ink: var(--brand-carvao);       /* headings, primary text */
+  --color-text: var(--brand-carvao);      /* long-form body text */
+  --color-text-muted: #5f5f5f;            /* secondary text (AA on white and névoa) */
+  --color-line: #d6d6d6;                  /* hairlines, borders */
+  --color-accent: var(--brand-madeira);   /* decorative accent: rules, fins */
+  --color-accent-text: var(--brand-madeira); /* accent used as text (labels) */
+  --color-on-accent: var(--brand-carvao); /* text placed on --color-highlight */
+  --color-highlight: var(--brand-hibisco);/* the pop: buttons, planned tags */
+  --color-botanic: var(--brand-bananeira);/* the canopy green */
+  --color-botanic-soft: var(--brand-agua);
+  --color-inverse-bg: var(--brand-carvao);/* dark sections */
+  --color-inverse-bg-2: #5a5a5a;
+  --color-inverse-ink: var(--brand-nevoa);
+  --color-inverse-muted: #d6d6d6;
+  --color-footer-bg: var(--brand-coco);
+  --color-focus: var(--brand-cobalto);
+  --fins: repeating-linear-gradient(90deg, var(--brand-madeira) 0 36px, var(--brand-madeira-dark) 36px 41px);
 
   /* Buttons */
-  --btn-primary-bg: var(--brand-blueberry);
-  --btn-primary-ink: var(--brand-cream);
-  --btn-primary-bg-hover: #1f2d40;
-  --btn-accent-bg: var(--brand-caramel);
-  --btn-accent-ink: var(--brand-espresso);
+  --btn-primary-bg: var(--brand-carvao);
+  --btn-primary-ink: var(--brand-nevoa);
+  --btn-primary-bg-hover: #2f2f2f;
+  --btn-accent-bg: var(--brand-hibisco);
+  --btn-accent-ink: var(--brand-carvao);
 
   /* --- Typography --- */
-  --font-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
-  --font-body: 'Hanken Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;   /* titles, labels, buttons */
+  --font-accent: 'EB Garamond', Garamond, Georgia, serif;        /* the italic second voice */
+  --font-body: 'Roboto', 'Segoe UI', system-ui, sans-serif;      /* running text */
   --display-weight: 400;
-  --display-weight-light: 300;
-  --display-tracking: -0.02em;
-  --display-style-emphasis: italic;   /* how <em> looks inside display headings */
-  --eyebrow-tracking: 0.2em;
-  --eyebrow-weight: 600;
+  --display-weight-light: 400;
+  --display-transform: uppercase;
+  --display-tracking: 0.14em;
+  --display-line: 1.25;
+  --display-style-emphasis: italic;   /* <em> inside titles becomes the Garamond line */
+  --eyebrow-tracking: 0.28em;
+  --eyebrow-weight: 500;
+  --button-transform: uppercase;
+  --button-tracking: 0.2em;
 
-  /* --- Shape & depth --- */
-  --radius-sm: 10px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
-  --radius-pill: 999px;
-  --shadow-soft: 0 18px 40px rgba(45, 62, 86, 0.12);
-  --shadow-lift: 0 26px 60px rgba(45, 62, 86, 0.18);
+  /* --- Shape & depth: the plan is rectangular; only the canopy is round --- */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+  --shadow-soft: 0 14px 34px rgba(67, 67, 67, 0.12);
+  --shadow-lift: 0 22px 50px rgba(67, 67, 67, 0.18);
 }

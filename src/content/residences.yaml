@@ -42,7 +42,7 @@
   bathrooms: null
   priceFrom: null
   status: available
-  summary: Two bedrooms with a separate dining area, arranged so living spaces face the view.
+  summary: Two bedrooms with a separate dining area, arranged so the living spaces face the light.
   rooms: [King bedroom, Queen bedroom, Guest bathroom, Living room, Dining room, Kitchen, Terrace]
 
 - id: type-c

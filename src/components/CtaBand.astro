@@ -1,25 +1,32 @@
 ---
 import Motif from '../brand/Motif.astro';
+import mural from '../assets/photos/banana-mural.jpg';
 interface Props { title?: string; text?: string; interest?: string }
 const {
-  title = 'Come and see where you could live.',
-  text = 'Tell us a little about what you’re looking for. We’ll send plans, prices and availability, and answer your questions personally.',
+  title = 'Come and see it for yourself.',
+  text = 'Tell us what you’re looking for. We’ll send plans and availability, answer your questions personally, and arrange a visit to the site and the town.',
   interest,
 } = Astro.props;
 const href = interest ? `/contact?interest=${encodeURIComponent(interest)}` : '/contact';
 ---
 <section class="section section--inverse cta">
-  <Motif class="cta__motif" />
-  <div class="container cta__inner stack" style="--stack:1.5rem">
-    <p class="eyebrow">Inquire</p>
-    <h2 class="h1">{title}</h2>
-    <p class="lede">{text}</p>
-    <div class="btn-row"><a class="btn btn--accent" href={href}>Send an inquiry</a></div>
+  <Motif class="cta__canopy" image={mural} />
+  <div class="container cta__inner">
+    <div class="stack" style="--stack:1.5rem">
+      <h2 class="h1">Book a visit <em>{title}</em></h2>
+      <p class="lede">{text}</p>
+      <div class="btn-row"><a class="btn btn--accent" href={href}>Book a visit</a></div>
+    </div>
   </div>
 </section>
 
 <style>
   .cta { position: relative; overflow: hidden; }
-  .cta__inner { position: relative; max-width: 900px; margin-inline: auto; text-align: left; }
-  .cta :global(.cta__motif) { position: absolute; width: min(70vw, 720px); right: -18%; top: 50%; transform: translateY(-50%); color: var(--color-inverse-ink); pointer-events: none; }
+  .cta__inner { position: relative; z-index: 1; }
+  .cta__inner > .stack { max-width: 40rem; }
+  .cta :global(.cta__canopy) { position: absolute; width: min(46vw, 560px); right: -8%; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 860px) {
+    .cta :global(.cta__canopy) { width: 260px; right: -90px; top: -90px; transform: none; opacity: .9; }
+    .cta__inner { padding-top: 7rem; }
+  }
 </style>

@@ -16,13 +16,12 @@ const levels = [
   { name: 'Basement', text: 'Covered parking, with lifts to every floor.' },
 ];
 ---
-<Base title="The Building" description="How Coronado Commons is designed: one home deep so every residence faces the view, a garden atrium at the centre, solar power on the roof, and step-free access throughout.">
+<Base title="The Building" description="How Coronado Commons is designed: one home deep so every residence faces the light, a garden atrium at the centre, solar power on the roof, and step-free access throughout.">
   <section class="section section--tight">
     <div class="container split split--wide-left">
       <div class="section-head" style="margin-bottom:0">
-        <p class="eyebrow">The building</p>
-        <h1 class="h1">Everything opens onto <em>the centre.</em></h1>
-        <p class="lede">A narrow site, one good direction, and a simple idea: put every home on the view side, and make the shared spaces the heart of the building.</p>
+        <h1 class="h1">The building <em>Everything opens onto the garden.</em></h1>
+        <p class="lede">A narrow site, one good direction, and a simple idea: put every home on the bright side, and make the shared spaces the heart of the building.</p>
       </div>
       <Figure src={facade} alt="Watercolour of the building from the street, with planted balconies and timber panels." ratio="5/7" loading="eager" widths={[480, 843]} sizes="(min-width: 900px) 40vw, 100vw" class="bhero__img" />
     </div>
@@ -31,10 +30,9 @@ const levels = [
   <section class="section">
     <div class="container split">
       <div class="stack">
-        <p class="eyebrow">One home deep</p>
-        <h2 class="h2">Why every home faces the view.</h2>
-        <p>Most buildings stack homes on both sides of a corridor, so half of them look the wrong way. Coronado Commons is one home deep. Walkways run along the north side, open to the breeze, and every residence looks south over the treed grounds next door.</p>
-        <p>It means more light, cross-ventilation and a terrace with a view for every home — not just the expensive ones.</p>
+        <h2 class="h2">One home deep <em>Every home faces the light.</em></h2>
+        <p>Most buildings stack homes on both sides of a corridor, so half of them look the wrong way. Coronado Commons is one home deep. Walkways run along the north side, open to the breeze, and every residence faces south, toward the light.</p>
+        <p>It means more daylight, air moving through every room, and a terrace for every home, not just the expensive ones.</p>
       </div>
       <Figure src={walkway} alt="Watercolour of the open-air walkway on the north side: brick paving under a timber ceiling, with planting along the rail." ratio="4/5" widths={[480, 940]} sizes="(min-width: 900px) 45vw, 100vw" class="bwalk__img" />
     </div>
@@ -44,8 +42,7 @@ const levels = [
     <div class="container split split--wide-left">
       <Figure src={atrium} alt="Watercolour of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/9" />
       <div class="stack">
-        <p class="eyebrow">The atrium</p>
-        <h2 class="h2">A garden at the heart of the building.</h2>
+        <h2 class="h2">The atrium <em>A garden at the heart of the building.</em></h2>
         <p>The atrium rises from the ground floor to the sky, bringing daylight and planting deep into the building. The lifts and stairs sit around it, so daily life — collecting the post, heading out for coffee — happens in a shared, green space.</p>
       </div>
     </div>
@@ -54,8 +51,7 @@ const levels = [
   <section class="section">
     <div class="container split">
       <div class="stack">
-        <p class="eyebrow">Floor by floor</p>
-        <h2 class="h2">Five floors of homes above a lively ground floor.</h2>
+        <h2 class="h2">Floor by floor <em>Five floors of homes above a lively ground floor.</em></h2>
       </div>
       <ol class="levels">
         {levels.map((l) => <li><span class="levels__name">{l.name}</span><span>{l.text}</span></li>)}
@@ -66,8 +62,7 @@ const levels = [
   <section class="section section--alt">
     <div class="container stack" style="--stack:2rem">
       <div class="section-head" style="margin-bottom:0">
-        <p class="eyebrow">Ground floor</p>
-        <h2 class="h2">A small high street, downstairs.</h2>
+        <h2 class="h2">Ground floor <em>A small high street, downstairs.</em></h2>
         <p>The lobby and atrium sit between ground-floor shops planned for everyday needs. <a href="/commercial">See the commercial units</a>.</p>
       </div>
       <Figure src={ground} alt="Ground floor plan: lobby and atrium in the centre, with five commercial units along the avenue and the length of the building." illustrative={false} caption="Ground floor plan. Uses shown are part of the concept and not yet confirmed." />
@@ -77,8 +72,7 @@ const levels = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Built to last</p>
-        <h2 class="h2">Designed to be easy to live in, for a long time.</h2>
+        <h2 class="h2">Built for a long life <em>Easy to live in, for a long time.</em></h2>
       </div>
       <div class="grid" style="--min:260px">
         <div class="point"><h3 class="h3">Step-free throughout</h3><p>Level access from the street and parking to every front door and terrace. Universal design is our standard, not an upgrade.</p></div>
@@ -100,6 +94,6 @@ const levels = [
   .split :global(.bhero__img), .split :global(.bwalk__img) { max-width: 480px; width: 100%; justify-self: center; }
   .levels { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
   .levels li { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); max-width: none; }
-  .levels__name { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-ink); }
+  .levels__name { font-family: var(--font-display); font-weight: 500; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-ink); }
   .point { border-top: 2px solid var(--color-accent); padding-top: 1.25rem; display: grid; gap: 0.6rem; align-content: start; }
 </style>
