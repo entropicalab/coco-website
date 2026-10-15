@@ -11,6 +11,9 @@
     "residentialPerM2": null,
     "currency": "USD"
   },
+  "analytics": {
+    "googleId": "G-V17F5TGXZ9"
+  },
   "form": {
     "provider": "formspree",
     "formspreeEndpoint": "https://formspree.io/f/meaerkdj",
