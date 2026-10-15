@@ -64,6 +64,7 @@ const ld = [complexLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) 
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');</script>
     <Fonts />
     {ld.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
   </head>
@@ -74,5 +75,6 @@ const ld = [complexLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) 
       <slot />
     </main>
     <Footer />
+    <script>import '../lib/motion';</script>
   </body>
 </html>

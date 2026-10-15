@@ -71,7 +71,7 @@ const jsonLd = {
     <div class="container plan-wrap">
       <figure class="plan">
         {plan && <Image src={plan} alt={`Floor plan of ${data.name}. Rooms: ${data.rooms.join(', ')}.`} widths={[600, 900, 1300]} sizes="(min-width: 1000px) 55vw, 100vw" loading="eager" />}
-        <figcaption class="small muted">Floor plan, not to scale. Furniture is shown to give a sense of space.</figcaption>
+        <figcaption class="small muted">Floor plan, drawn to scale. Furniture is shown to give a sense of space.</figcaption>
       </figure>
       <div class="stack">
         <h2 class="h3">What’s inside</h2>
@@ -80,9 +80,9 @@ const jsonLd = {
         </ul>
         <h2 class="h3" style="margin-top:2.5rem">In every home</h2>
         <ul class="rooms">
-          <li>Step-free from the street to the terrace</li>
-          <li>Front door onto the garden atrium</li>
-          <li>Terrace facing south, over the trees</li>
+          <li>Validated cross-ventilation</li>
+          <li>Terrace on the south side, toward the light</li>
+          <li>Step-free access throughout the building</li>
           <li>Covered parking with lift access</li>
         </ul>
       </div>
@@ -90,7 +90,7 @@ const jsonLd = {
   </section>
 
   {interior && (
-    <section class="section section--alt">
+    <section class="section section--tint-1">
       <div class="container stack" style="--stack:1.5rem">
         <h2 class="h3">Inside {data.name}</h2>
         <Figure src={interior} alt={`Watercolour of the living area in ${data.name}, with timber floors, the kitchen and full-height glass to the terrace.`} ratio="16/9" caption={`Artist’s impression of ${data.name}.`} />
@@ -98,7 +98,7 @@ const jsonLd = {
     </section>
   )}
 
-  <section class="section" id="inquire">
+  <section class="section section--tint-2" id="inquire">
     <div class="container--narrow stack" style="--stack:2rem">
       <div class="stack">
         <h2 class="h2">Inquire <em>Ask about {data.name}.</em></h2>
@@ -109,7 +109,7 @@ const jsonLd = {
   </section>
 
   {similar.length > 0 && (
-    <section class="section section--alt">
+    <section class="section section--herringbone">
       <div class="container">
         <h2 class="h3" style="margin-bottom:2rem">Other {bedroomLabel(data.bedrooms)} homes</h2>
         <div class="grid" style="--min:290px">{similar.map((r) => <ResidenceCard residence={r} />)}</div>

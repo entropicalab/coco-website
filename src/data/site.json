@@ -3,7 +3,7 @@
   "shortName": "CoCo",
   "url": "https://lifeatcoco.com",
   "tagline": "Independent living, together.",
-  "description": "Coronado Commons is a boutique building of 41 residences in Coronado, Panamá, designed for life after sixty. Every home faces the light and opens onto a shared garden atrium.",
+  "description": "Coronado Commons is a boutique building of 41 residences in Coronado, Panamá, designed for life after sixty. Every home faces the light, with validated cross-ventilation, around a shared garden atrium.",
   "salesEmail": "sales@lifeatcoco.com",
   "phone": "+507 6200-6909",
   "whatsapp": null,
@@ -52,6 +52,10 @@
     {
       "label": "Living Here",
       "href": "/living"
+    },
+    {
+      "label": "Sustainability",
+      "href": "/sustainability"
     },
     {
       "label": "Coronado",

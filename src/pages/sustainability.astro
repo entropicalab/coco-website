@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Motif from '../brand/Motif.astro';
+import atrium from '../assets/renders/atrium.jpg';
+import walkway from '../assets/renders/walkway.jpg';
+import facade from '../assets/renders/facade.jpg';
+import palm from '../assets/photos/coconut-palm.jpg';
+
+const energy = [
+  {
+    title: 'Energy-led design',
+    text: 'Energy use shaped the building from the first sketch. Orientation, shade and airflow do the work first, so the machines have less to do and can be smaller.',
+  },
+  {
+    title: 'Rooftop solar array',
+    text: 'A solar array across the roof generates clean power on site, under Panamá’s generous sun, and helps keep the building’s shared running costs down.',
+  },
+  {
+    title: 'Central cooling plant',
+    text: 'One efficient central plant cools the whole building instead of dozens of separate units. It uses less energy for the same comfort, which means cheaper air conditioning, and there are no noisy condensers on your terrace.',
+  },
+];
+const maintenance = [
+  { title: 'Cladding, not paint', text: 'Facades are finished in durable cladding instead of paint, so there is no repainting cycle to fund every few years in the salt air.' },
+  { title: 'Materials that age well', text: 'Hardwood and concrete are chosen for how they weather, not just how they look on the first day.' },
+  { title: 'Fewer machines to service', text: 'A single cooling plant and shared systems mean less equipment to maintain, and maintenance that is planned rather than reactive.' },
+];
+---
+<Base title="Sustainability" description="How Coronado Commons is designed for the tropics: validated cross-ventilation, a high-performance facade, energy-led design, rooftop solar, a central cooling plant, planting that cools, and durable cladding that keeps maintenance costs down.">
+  <section class="section section--tight">
+    <div class="container section-head">
+      <h1 class="h1">Sustainability <em>Shade, light and air by design.</em></h1>
+      <p class="lede">A building made for its climate needs less energy, less upkeep and less money to run. That is what sustainability means here: lower bills and a more comfortable home, every day.</p>
+    </div>
+    <div class="container">
+      <Figure src={atrium} alt="Watercolour of the planted atrium, with daylight reaching down through every floor." ratio="21/9" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section section--tint-1">
+    <div class="container split split--wide-right">
+      <Figure src={walkway} alt="Watercolour of the shaded open-air walkway, with a timber ceiling, brick paving and planting along the rail." ratio="4/5" widths={[480, 940]} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
+      <div class="stack">
+        <h2 class="h2">Tropical architecture <em>The building handles the heat. You enjoy the day.</em></h2>
+        <p>Coronado Commons follows the logic of tropical modernism: deep shade, open walkways and air that moves freely through the building.</p>
+        <ul class="ticks">
+          <li><strong>Validated cross-ventilation.</strong> Every home can open to the breeze on both sides, and the airflow has been checked, not assumed.</li>
+          <li><strong>One home deep.</strong> No dark, sealed corridors; every residence has windows to the south and an open walkway behind.</li>
+          <li><strong>Deep shade.</strong> Overhangs and screens keep direct sun off the glass and the terraces at midday.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--wide-left">
+      <div class="stack">
+        <h2 class="h2">Facade and glazing <em>Daylight in, heat out.</em></h2>
+        <p>The facade is designed as a working part of the building. Fins and overhangs shade the windows, and high-performance glazing lets in daylight while limiting the sun’s heat.</p>
+        <p>The result is bright rooms that stay cool, with less work for the air conditioning and less glare on a hot afternoon.</p>
+      </div>
+      <Figure src={facade} alt="Watercolour of the facade: deep balconies, timber panels and planting shading the windows." ratio="4/5" widths={[480, 843]} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
+    </div>
+  </section>
+
+  <section class="section section--herringbone">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Energy <em>Use less first. Then make it clean.</em></h2>
+        <p>Good design cuts how much energy the building needs. What remains comes as much as possible from the sun, and is delivered by efficient shared systems.</p>
+      </div>
+      <div class="grid" style="--min:280px">
+        {energy.map((e) => (
+          <article class="card">
+            <h3 class="h3">{e.title}</h3>
+            <p>{e.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint-2 green">
+    <Motif class="green__canopy" image={palm} />
+    <div class="container green__inner">
+      <div class="stack">
+        <h2 class="h2">Planting <em>Green that cools.</em></h2>
+        <p>Plants are part of the building’s climate system. The garden atrium, the planted terraces and the green around the building shade surfaces and cool the air through evaporation, lowering temperatures where you live.</p>
+        <p>They are also restful to look at. Green views reduce glare and give the eye somewhere soft to land, from every floor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint-3">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Lower maintenance <em>Built to last, so it costs less to keep.</em></h2>
+        <p>Choices made now keep the building’s running and maintenance costs lower for years, which matters for anyone planning a long stay.</p>
+      </div>
+      <div class="grid" style="--min:260px">
+        {maintenance.map((m) => (
+          <div class="point">
+            <h3 class="h3">{m.title}</h3>
+            <p>{m.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="See how it works in person." />
+</Base>
+
+<style>
+  .split :global(.tall) { max-width: 440px; width: 100%; justify-self: center; }
+  .ticks { list-style: none; padding: 0; display: grid; gap: 1rem; }
+  .ticks li { padding-left: 1.6rem; position: relative; max-width: 60ch; }
+  .ticks li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--color-botanic); }
+  .card { background: var(--color-surface); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); display: grid; gap: 0.75rem; align-content: start; box-shadow: var(--shadow-soft); }
+  .point { border-top: 2px solid var(--color-ink); padding-top: 1.25rem; display: grid; gap: 0.6rem; align-content: start; }
+  .green { position: relative; overflow: hidden; }
+  .green__inner { position: relative; z-index: 1; }
+  .green__inner .stack { max-width: 38rem; }
+  .green :global(.green__canopy) { position: absolute; width: min(48vw, 560px); right: -6%; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 860px) {
+    .green :global(.green__canopy) { width: 240px; right: -70px; top: -60px; transform: none; }
+    .green__inner { padding-top: 8rem; }
+  }
+</style>

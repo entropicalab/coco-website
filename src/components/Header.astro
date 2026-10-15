@@ -57,9 +57,10 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
   .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 84px; }
   .site-header__logo { text-decoration: none; }
 
-  .site-nav { display: flex; align-items: center; gap: 2rem; }
-  .site-nav ul { display: flex; gap: 1.6rem; list-style: none; padding: 0; }
-  .site-nav ul a { text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-ink); padding-block: 0.6rem; border-bottom: 2px solid transparent; }
+  .site-nav { display: flex; align-items: center; gap: 1.75rem; }
+  .site-nav__cta { white-space: nowrap; }
+  .site-nav ul { display: flex; gap: 1.35rem; list-style: none; padding: 0; }
+  .site-nav ul a { white-space: nowrap; text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-ink); padding-block: 0.6rem; border-bottom: 2px solid transparent; }
   .site-nav ul a:hover, .site-nav ul a[aria-current='page'] { border-bottom-color: var(--color-accent); }
   .site-header--overlay:not(.is-scrolled):not(.is-open) .site-nav ul a { color: var(--color-inverse-ink); }
 
@@ -69,7 +70,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
     .site-header__toggle .label { display: none; }
     .site-header__toggle { padding: 0 0.9rem; min-width: 48px; justify-content: center; }
   }
-  @media (max-width: 1240px) {
+  @media (max-width: 1380px) {
     .site-header__toggle {
       display: inline-flex; align-items: center; gap: 0.6rem; min-height: 48px; padding: 0 1rem;
       border: 1.5px solid currentColor; border-radius: var(--radius-button); background: transparent;

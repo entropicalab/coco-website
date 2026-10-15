@@ -33,7 +33,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
     <div class="container hero__grid">
       <div class="hero__plan">
         <p class="eyebrow">Coronado, Panamá</p>
-        <h1 class="display">Independent living, together <em>{s.residences} homes around a garden, designed for life after sixty.</em></h1>
+        <h1 class="display hero__title"><span class="hero__line">Independent living,</span> together <em>{s.residences} homes around a garden, designed for life after sixty.</em></h1>
         <p class="hero__lede">Your own front door, your own routine, and good company a few steps away. Open to anyone; designed, detail by detail, for the decades ahead.</p>
         <div class="btn-row">
           <a class="btn btn--accent" href="/contact">Book a visit</a>
@@ -60,13 +60,13 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   </section>
 
   <!-- Who it's for -->
-  <section class="section">
+  <section class="section section--tint-1">
     <div class="container split split--wide-left">
       <Figure src={couple} alt="Two residents laughing together on a garden bench, among tropical plants and a screen wall." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 55vw, 100vw" />
       <div class="stack">
         <h2 class="h2">Built for a long life <em>Designed for life after sixty. Open to anyone.</em></h2>
         <p>Coronado Commons is for people who want their own home and their own routine, with neighbours they know by name. It isn’t assisted living, and it isn’t a resort.</p>
-        <p>It’s a small neighbourhood in one building: step-free from the street to your terrace, walkable to Coronado’s shops, banks and clinics, and arranged so that seeing people is part of the day rather than an appointment.</p>
+        <p>It’s a small neighbourhood in one building: step-free throughout, walkable to Coronado’s shops, banks and clinics, and arranged so that seeing people is part of the day rather than an appointment.</p>
       </div>
     </div>
   </section>
@@ -78,7 +78,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
         <h2 class="h2">Shade, light and air <em>The building handles the heat. You enjoy the day.</em></h2>
         <p>The building is one home deep. Every residence faces south, toward the light, and an open walkway runs behind it to catch the breeze. Air moves through every home, and deep shade keeps the terraces comfortable at midday.</p>
         <p>No home looks onto a corridor. None faces a wall.</p>
-        <p><a class="text-link" href="/the-building">How the building works</a></p>
+        <p><a class="text-link" href="/sustainability">How the building stays cool</a></p>
       </div>
       <Figure src={walkway} alt="Watercolour of the open-air walkway: brick paving under a timber ceiling, with planting along the rail." ratio="4/5" widths={[480, 940]} sizes="(min-width: 900px) 40vw, 100vw" class="tall" />
     </div>
@@ -89,7 +89,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
     <div class="container">
       <div class="section-head">
         <h2 class="h1">A garden at the centre <em>{s.residences} homes. Never more than forty neighbours.</em></h2>
-        <p class="lede">A daylit garden atrium rises through every floor. Your front door opens onto it. You cross it on the way to the lift, to the café and to the street, and that’s where you get to know people.</p>
+        <p class="lede">A daylit garden atrium rises through every floor. You cross it on the way to the lift, to the café and to the street, and that’s where you get to know people.</p>
       </div>
       <div class="commons__media">
         <Figure src={atrium} alt="Watercolour of the atrium: balconies and walkways on several levels around a planted courtyard with café tables." ratio="16/10" sizes="(min-width: 900px) 62vw, 100vw" />
@@ -113,7 +113,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   </section>
 
   <!-- Living -->
-  <section class="section">
+  <section class="section section--tint-2">
     <div class="container split split--wide-right">
       <div class="stack">
         <h2 class="h2">Living here <em>Your morning coffee is downstairs.</em></h2>
@@ -133,7 +133,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   </section>
 
   <!-- Coronado -->
-  <section class="section section--alt">
+  <section class="section section--tint-3">
     <div class="container split">
       <Figure src={aerial} alt="Aerial view of Coronado: low-rise neighbourhoods among dense tropical trees." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 50vw, 100vw" />
       <div class="stack">
@@ -170,7 +170,10 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
     padding: clamp(2rem, 1.2rem + 3vw, 4.5rem); display: grid; gap: 1.6rem; align-content: center;
   }
   .hero__plan .eyebrow { color: var(--color-highlight); }
-  .hero__plan .display { color: var(--color-inverse-ink); max-width: 16ch; }
+  .hero__plan .display { color: var(--color-inverse-ink); }
+  .hero__title { font-size: clamp(1.55rem, 1rem + 1.7vw, 2.45rem); }
+  .hero__title em { font-size: 1.25em; }
+  @media (min-width: 560px) { .hero__line { white-space: nowrap; } }
   .hero__plan .display em { max-width: 26ch; }
   .hero__lede { color: var(--color-inverse-muted); max-width: 40ch; }
   .hero__link { color: var(--color-inverse-ink); font-family: var(--font-display); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; text-decoration: none; padding: 0.9rem 0.25rem; border-bottom: 2px solid transparent; }

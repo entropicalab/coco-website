@@ -5,7 +5,7 @@
   name: The atrium
   order: 1
   confirmed: true
-  summary: A planted, daylit atrium rises through every floor. Every front door opens onto it, so you pass neighbours on the way to the lift — not in a hallway.
+  summary: A planted, daylit atrium rises through every floor. The lifts and stairs sit around it, so you pass neighbours on the way in and out, not in a hallway.
 
 - id: view
   name: Light and air

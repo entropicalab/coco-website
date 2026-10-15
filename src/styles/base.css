@@ -74,6 +74,23 @@ a:hover { text-decoration-thickness: 2px; }
 .section--tight { padding-block: clamp(3rem, 2rem + 3vw, 5rem); }
 .section--alt { background-color: var(--color-bg-alt); background-image: var(--pattern-brick); }
 .section--herringbone { background-color: var(--color-bg-alt); background-image: var(--pattern-herringbone); }
+/* Text never sits directly on a pattern: it gets its own white panel */
+:is(.section--alt, .section--herringbone) :is(.container > .stack, .container > .section-head, .container.section-head, .split > .stack, .split > dl, .split > ol, .split > ul) {
+  background: var(--color-surface); border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+}
+:is(.section--alt, .section--herringbone) .section-head { max-width: 58rem; }
+.section--tint-1 { background: var(--color-tint-1); }
+.section--tint-2 { background: var(--color-tint-2); }
+.section--tint-3 { background: var(--color-tint-3); }
+:is(.section--tint-1, .section--tint-2, .section--tint-3) {
+  color: var(--color-ink);
+  --color-text-muted: var(--color-ink);
+  --color-accent-text: var(--color-ink);
+  --color-accent: var(--color-ink);
+  --color-line: rgba(33, 33, 33, 0.28);
+}
+.section--tint-3 .btn--accent { background: var(--btn-primary-bg); color: var(--btn-primary-ink); }
 .section--inverse { background: var(--color-inverse-bg); color: var(--color-inverse-muted); }
 .section--inverse :is(h1, h2, h3, h4, .lede, a) { color: var(--color-inverse-ink); }
 .section--inverse .eyebrow { color: var(--color-highlight); }
@@ -135,3 +152,31 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ---------- Fins: louver texture, used once per layout on a wood field ---------- */
 .fins { background: var(--fins); color: var(--color-inverse-ink); }
+
+/* ---------- Motion ----------
+   Only when the visitor hasn't asked for reduced motion (the .motion class is set in <head>).
+   Images settle in, cards arrive in a short stagger, canopies grow and drift, the hero rises on load. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion :is(.figure, .rcard, .card, .amenity, .point) {
+    opacity: 0; translate: 0 32px;
+    transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), translate 0.9s cubic-bezier(.2,.7,.2,1), box-shadow .25s, transform .25s;
+    transition-delay: var(--d, 0ms);
+  }
+  .motion .figure .figure__media img { scale: 1.08; transition: scale 1.8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+  .motion :is(.figure, .rcard, .card, .amenity, .point).is-in { opacity: 1; translate: 0 0; }
+  .motion .figure.is-in .figure__media img { scale: 1; }
+
+  .motion .canopy { scale: 0.35; opacity: 0; translate: 0 var(--py, 0px); transition: scale 1.6s cubic-bezier(.2,.8,.2,1), opacity 1s ease; }
+  .motion .canopy.is-in { scale: 1; opacity: 1; }
+
+  @keyframes rise { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+  .motion .hero__plan { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+  .motion .hero__plan > * { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+  .motion .hero__plan > :nth-child(1) { animation-delay: .25s; }
+  .motion .hero__plan > :nth-child(2) { animation-delay: .4s; }
+  .motion .hero__plan > :nth-child(3) { animation-delay: .6s; }
+  .motion .hero__plan > :nth-child(4) { animation-delay: .75s; }
+
+  @keyframes drift { from { background-position: 0% 40%; } to { background-position: 100% 60%; } }
+  .motion .commercial-teaser { background-size: 130% auto !important; animation: drift 40s ease-in-out infinite alternate; }
+}
