@@ -68,7 +68,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="section section--tint-3" style="padding-top:0">
+  <section class="section section--tint-3">
     <div class="container plan-wrap">
       <figure class="plan">
         {plan && <Image src={plan} alt={`Floor plan of ${data.name}. Rooms: ${data.rooms.join(', ')}.`} widths={[600, 900, 1300]} sizes="(min-width: 1000px) 55vw, 100vw" loading="eager" />}
@@ -81,6 +81,7 @@ const jsonLd = {
         </ul>
         <h2 class="h3" style="margin-top:2.5rem">In every home</h2>
         <ul class="rooms">
+          <li class="icon-row"><Icon name="chair" />Delivered fully furnished, ready to move in</li>
           <li class="icon-row"><Icon name="air" />Validated cross-ventilation</li>
           <li class="icon-row"><Icon name="wb_sunny" />Terrace on the south side, toward the light</li>
           <li class="icon-row"><Icon name="accessible" />Step-free access throughout the building</li>

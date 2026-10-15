@@ -5,6 +5,7 @@ import Figure from '../components/Figure.astro';
 import ResidenceCard from '../components/ResidenceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import LocationMaps from '../components/LocationMaps.astro';
+import Timeline from '../components/Timeline.astro';
 import Motif from '../brand/Motif.astro';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -122,6 +123,17 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
         {teaser.map((r) => <ResidenceCard residence={r} />)}
       </div>
       <p style="margin-top:2.5rem"><a class="btn btn--primary" href="/residences">See all {s.residenceTypes} homes</a></p>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Timeline <em>From approval to moving in.</em></h2>
+        <p>The design is done and the pre-project is with the municipality. This is what happens next.</p>
+      </div>
+      <Timeline />
     </div>
   </section>
 

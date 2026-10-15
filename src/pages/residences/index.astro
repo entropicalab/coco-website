@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ResidenceCard from '../../components/ResidenceCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Timeline from '../../components/Timeline.astro';
 import Figure from '../../components/Figure.astro';
 import { getCollection } from 'astro:content';
 import site from '../../data/site.json';
@@ -14,11 +15,11 @@ const counts = [1, 2, 3].map((n) => ({ n, count: residences.filter((r) => r.data
   <section class="section section--tight">
     <div class="container section-head" style="margin-bottom:0">
       <h1 class="h1">The homes <em>Find the one that fits.</em></h1>
-      <p class="lede">{site.stats.residenceTypes} layouts from {site.stats.sizeMin} to {site.stats.sizeMax} m². Every one has a terrace, a guest bathroom, windows to the south and validated cross-ventilation.</p>
+      <p class="lede">{site.stats.residenceTypes} layouts from {site.stats.sizeMin} to {site.stats.sizeMax} m². Every one comes fully furnished, with a terrace, a guest bathroom, windows to the south and validated cross-ventilation.</p>
     </div>
   </section>
 
-  <section class="section section--tint-1" style="padding-top:0">
+  <section class="section section--tint-1">
     <div class="container">
       <div class="filter" role="group" aria-label="Filter by bedrooms">
         <span class="filter__label">Show</span>
@@ -44,6 +45,16 @@ const counts = [1, 2, 3].map((n) => ({ n, count: residences.filter((r) => r.data
         <p>Each residential floor holds nine homes along the south side. Shared walkways run along the north, and the atrium opens in the middle.</p>
       </div>
       <Figure src={typical} alt="Plan of a typical residential floor: nine apartments side by side along one long facade, with an open atrium at the centre." illustrative={false} caption="Typical residential floor. The plan may change during design development." />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Timeline <em>From approval to moving in.</em></h2>
+        <p>Every home is handed over fully furnished. This is how we get there.</p>
+      </div>
+      <Timeline />
     </div>
   </section>
 

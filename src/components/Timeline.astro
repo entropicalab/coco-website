@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+import timeline from '../data/timeline.json';
+const { stages } = timeline;
+---
+<ol class="timeline" aria-label="Project timeline">
+  {stages.map((s) => (
+    <li class={`tl tl--${s.status}`} aria-current={s.status === 'now' ? 'step' : undefined}>
+      <span class="tl__mark" aria-hidden="true">
+        {s.status === 'done' && <Icon name="check" />}
+        {s.status === 'now' && <span class="tl__pulse"></span>}
+      </span>
+      <div class="tl__body">
+        {s.status === 'now' && <p class="tl__now">Now</p>}
+        <p class="tl__when">{s.duration}</p>
+        <h3 class="tl__title">{s.title}</h3>
+        <p class="tl__text">{s.text}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; --mark: 2.25rem; }
+  .tl { position: relative; display: grid; grid-template-columns: var(--mark) 1fr; gap: 1.25rem; padding-bottom: 2.25rem; align-content: start; }
+  .tl:last-child { padding-bottom: 0; }
+  /* The track: solid behind finished stages, dashed ahead */
+  .tl::before {
+    content: ''; position: absolute; left: calc(var(--mark) / 2 - 1px); top: var(--mark); bottom: 0; width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--color-ink) 0 6px, transparent 6px 12px);
+  }
+  .tl--done::before { background: var(--color-ink); }
+  .tl:last-child::before { display: none; }
+
+  .tl__mark {
+    width: var(--mark); height: var(--mark); border-radius: 50%; display: grid; place-items: center; position: relative;
+    border: 2px solid var(--color-ink); background: var(--color-surface, #fff); color: var(--color-inverse-ink); --color-icon: var(--color-inverse-ink);
+  }
+  .tl--done .tl__mark { background: var(--color-ink); }
+  .tl--done .tl__mark :global(.icon) { font-size: 1.3rem; }
+  .tl--now .tl__mark { background: var(--color-highlight); }
+  .tl__pulse { position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--color-highlight); }
+
+  .tl__body { display: grid; gap: 0.35rem; padding-top: 0.3rem; align-content: start; }
+  .tl__when { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-muted); }
+  .tl__now { justify-self: start; font-family: var(--font-display); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; background: var(--color-highlight); color: var(--color-on-accent); border-radius: var(--radius-pill); padding: 0.2rem 0.7rem; }
+  .tl__title { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; letter-spacing: 0.04em; color: var(--color-ink); }
+  .tl__text { color: var(--color-text-muted); max-width: 34ch; }
+  .tl--now .tl__title { font-size: 1.15rem; }
+  .tl--next .tl__title { color: var(--color-ink); }
+
+  /* Wide screens: a horizontal track */
+  @media (min-width: 1000px) {
+    .timeline { grid-template-columns: repeat(5, 1fr); gap: 1.5rem; }
+    .tl { grid-template-columns: 1fr; gap: 1.25rem; padding-bottom: 0; }
+    .tl::before {
+      left: var(--mark); right: -1.5rem; top: calc(var(--mark) / 2 - 1px); bottom: auto; width: auto; height: 2px;
+      background: repeating-linear-gradient(to right, var(--color-ink) 0 6px, transparent 6px 12px);
+    }
+    .tl--done::before { background: var(--color-ink); }
+    .tl__body { padding-top: 0; }
+    .tl__now { position: absolute; left: calc(var(--mark) + 0.6rem); top: calc(var(--mark) / 2 - 0.72rem); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.motion) .tl__pulse { animation: tl-pulse 2.4s ease-out infinite; }
+    @keyframes tl-pulse { 0% { scale: 1; opacity: 1; } 100% { scale: 1.8; opacity: 0; } }
+  }
+</style>

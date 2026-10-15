@@ -1,0 +1,35 @@
+{
+  "note": "status: done | now | next. Move \"now\" forward as the project advances.",
+  "stages": [
+    {
+      "status": "done",
+      "title": "Feasibility and concept design",
+      "duration": "Complete",
+      "text": "Site studies, the brief and the design of the building."
+    },
+    {
+      "status": "now",
+      "title": "Pre-project approval",
+      "duration": "A few weeks to a few months",
+      "text": "The municipality is reviewing the pre-project (anteproyecto)."
+    },
+    {
+      "status": "next",
+      "title": "Construction documents and official pre-sale",
+      "duration": "About 8 months",
+      "text": "Detailed construction drawings are prepared while the official pre-sale opens."
+    },
+    {
+      "status": "next",
+      "title": "Construction",
+      "duration": "About 18 months",
+      "text": "The building goes up."
+    },
+    {
+      "status": "next",
+      "title": "Move in",
+      "duration": "Ready when you are",
+      "text": "Homes are handed over fully furnished and ready to live in. An optional package adds tableware, décor and plants."
+    }
+  ]
+}
