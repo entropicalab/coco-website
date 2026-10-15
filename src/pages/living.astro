@@ -1,11 +1,11 @@
 ---
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
 import friends from '../assets/photos/friends-fruit.jpg';
 import dancing from '../assets/photos/dancing-garden.jpg';
-import fruit from '../assets/photos/fruit-bowl.jpg';
 
 const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -44,7 +44,7 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
         {amenities.map((a) => (
           <article class="amenity">
             <div class="amenity__top">
-              <h3 class="h3">{a.data.name}</h3>
+              <h3 class="h3 icon-row"><Icon name={a.data.icon} />{a.data.name}</h3>
               {!a.data.confirmed && <span class="tag tag--planned">Planned</span>}
             </div>
             <p>{a.data.summary}</p>
@@ -65,11 +65,6 @@ const amenities = (await getCollection('amenities')).sort((a, b) => a.data.order
     </div>
   </section>
 
-  <section class="section section--herringbone">
-    <div class="container">
-      <Figure src={fruit} alt="A bowl of papaya, bananas, passion fruit and dragon fruit on a timber table." ratio="21/9" illustrative={false} />
-    </div>
-  </section>
 
   <CtaBand />
 </Base>

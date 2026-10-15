@@ -75,7 +75,7 @@ a:hover { text-decoration-thickness: 2px; }
 .section--alt { background-color: var(--color-bg-alt); background-image: var(--pattern-brick); }
 .section--herringbone { background-color: var(--color-bg-alt); background-image: var(--pattern-herringbone); }
 /* Text never sits directly on a pattern: it gets its own white panel */
-:is(.section--alt, .section--herringbone) :is(.container > .stack, .container > .section-head, .container.section-head, .split > .stack, .split > dl, .split > ol, .split > ul) {
+:is(.section--alt, .section--herringbone) :is(.container > .stack, .container > .section-head, .container.section-head, .container--narrow, .split > .stack, .split > dl, .split > ol, .split > ul) {
   background: var(--color-surface); border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 1rem + 2vw, 2.75rem);
 }
@@ -180,3 +180,15 @@ a:hover { text-decoration-thickness: 2px; }
   @keyframes drift { from { background-position: 0% 40%; } to { background-position: 100% 60%; } }
   .motion .commercial-teaser { background-size: 130% auto !important; animation: drift 40s ease-in-out infinite alternate; }
 }
+
+/* ---------- Icons (Material Symbols Rounded, light) ---------- */
+.icon {
+  font-family: 'Material Symbols Rounded'; font-weight: 300; font-style: normal;
+  font-size: 1.5em; line-height: 1; letter-spacing: normal; text-transform: none;
+  display: inline-block; white-space: nowrap; direction: ltr; flex: none;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  -webkit-font-smoothing: antialiased; font-feature-settings: 'liga';
+  color: var(--color-icon, var(--color-accent));
+  width: 1em; overflow: hidden;
+}
+.icon-row { display: flex; align-items: center; gap: 0.75rem; }

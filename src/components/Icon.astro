@@ -1,0 +1,7 @@
+---
+// Google Material Symbols (Rounded). Decorative: the text next to it carries the meaning.
+// When adding a new icon name, also add it to the icon_names list in src/brand/Fonts.astro.
+interface Props { name: string; class?: string }
+const { name, class: className } = Astro.props;
+---
+<span class:list={['icon', className]} aria-hidden="true" translate="no">{name}</span>

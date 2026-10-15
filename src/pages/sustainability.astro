@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -10,22 +11,25 @@ import palm from '../assets/photos/coconut-palm.jpg';
 
 const energy = [
   {
+    icon: 'bolt',
     title: 'Energy-led design',
     text: 'Energy use shaped the building from the first sketch. Orientation, shade and airflow do the work first, so the machines have less to do and can be smaller.',
   },
   {
+    icon: 'solar_power',
     title: 'Rooftop solar array',
     text: 'A solar array across the roof generates clean power on site, under Panamá’s generous sun, and helps keep the building’s shared running costs down.',
   },
   {
+    icon: 'ac_unit',
     title: 'Central cooling plant',
     text: 'One efficient central plant cools the whole building instead of dozens of separate units. It uses less energy for the same comfort, which means cheaper air conditioning, and there are no noisy condensers on your terrace.',
   },
 ];
 const maintenance = [
-  { title: 'Cladding, not paint', text: 'Facades are finished in durable cladding instead of paint, so there is no repainting cycle to fund every few years in the salt air.' },
-  { title: 'Materials that age well', text: 'Hardwood and concrete are chosen for how they weather, not just how they look on the first day.' },
-  { title: 'Fewer machines to service', text: 'A single cooling plant and shared systems mean less equipment to maintain, and maintenance that is planned rather than reactive.' },
+  { icon: 'layers', title: 'Cladding, not paint', text: 'Facades are finished in durable cladding instead of paint, so there is no repainting cycle to fund every few years in the salt air.' },
+  { icon: 'nature', title: 'Materials that age well', text: 'Hardwood and concrete are chosen for how they weather, not just how they look on the first day.' },
+  { icon: 'handyman', title: 'Fewer machines to service', text: 'A single cooling plant and shared systems mean less equipment to maintain, and maintenance that is planned rather than reactive.' },
 ];
 ---
 <Base title="Sustainability" description="How Coronado Commons is designed for the tropics: validated cross-ventilation, a high-performance facade, energy-led design, rooftop solar, a central cooling plant, planting that cools, and durable cladding that keeps maintenance costs down.">
@@ -46,9 +50,9 @@ const maintenance = [
         <h2 class="h2">Tropical architecture <em>The building handles the heat. You enjoy the day.</em></h2>
         <p>Coronado Commons follows the logic of tropical modernism: deep shade, open walkways and air that moves freely through the building.</p>
         <ul class="ticks">
-          <li><strong>Validated cross-ventilation.</strong> Every home can open to the breeze on both sides, and the airflow has been checked, not assumed.</li>
-          <li><strong>One home deep.</strong> No dark, sealed corridors; every residence has windows to the south and an open walkway behind.</li>
-          <li><strong>Deep shade.</strong> Overhangs and screens keep direct sun off the glass and the terraces at midday.</li>
+          <li><Icon name="air" /><strong>Validated cross-ventilation.</strong> Every home can open to the breeze on both sides, and the airflow has been checked, not assumed.</li>
+          <li><Icon name="wb_sunny" /><strong>One home deep.</strong> No dark, sealed corridors; every residence has windows to the south and an open walkway behind.</li>
+          <li><Icon name="wb_shade" /><strong>Deep shade.</strong> Overhangs and screens keep direct sun off the glass and the terraces at midday.</li>
         </ul>
       </div>
     </div>
@@ -74,6 +78,7 @@ const maintenance = [
       <div class="grid" style="--min:280px">
         {energy.map((e) => (
           <article class="card">
+            <Icon name={e.icon} class="card__icon" />
             <h3 class="h3">{e.title}</h3>
             <p>{e.text}</p>
           </article>
@@ -93,7 +98,7 @@ const maintenance = [
     </div>
   </section>
 
-  <section class="section section--tint-3">
+  <section class="section section--alt">
     <div class="container">
       <div class="section-head">
         <h2 class="h2">Lower maintenance <em>Built to last, so it costs less to keep.</em></h2>
@@ -101,10 +106,11 @@ const maintenance = [
       </div>
       <div class="grid" style="--min:260px">
         {maintenance.map((m) => (
-          <div class="point">
+          <article class="card">
+            <Icon name={m.icon} class="card__icon" />
             <h3 class="h3">{m.title}</h3>
             <p>{m.text}</p>
-          </div>
+          </article>
         ))}
       </div>
     </div>
@@ -116,8 +122,9 @@ const maintenance = [
 <style>
   .split :global(.tall) { max-width: 440px; width: 100%; justify-self: center; }
   .ticks { list-style: none; padding: 0; display: grid; gap: 1rem; }
-  .ticks li { padding-left: 1.6rem; position: relative; max-width: 60ch; }
-  .ticks li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--color-botanic); }
+  .ticks li { padding-left: 2.4rem; position: relative; max-width: 60ch; }
+  .ticks li :global(.icon) { position: absolute; left: 0; top: 0.05em; }
+  .card :global(.card__icon) { font-size: 2.2rem; color: var(--color-botanic); }
   .card { background: var(--color-surface); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); display: grid; gap: 0.75rem; align-content: start; box-shadow: var(--shadow-soft); }
   .point { border-top: 2px solid var(--color-ink); padding-top: 1.25rem; display: grid; gap: 0.6rem; align-content: start; }
   .green { position: relative; overflow: hidden; }

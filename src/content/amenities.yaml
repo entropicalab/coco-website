@@ -1,50 +1,58 @@
 # Shared spaces and services. confirmed: false shows a "Planned" tag on the site.
-# order controls display order (lowest first).
+# order controls display order (lowest first). icon: a Google Material Symbols name.
 
 - id: atrium
   name: The atrium
+  icon: park
   order: 1
   confirmed: true
   summary: A planted, daylit atrium rises through every floor. The lifts and stairs sit around it, so you pass neighbours on the way in and out, not in a hallway.
 
 - id: view
   name: Light and air
+  icon: air
   order: 2
   confirmed: true
   summary: Every home faces south, toward the light, with an open walkway behind it for the breeze. No home looks onto a corridor or a wall.
 
 - id: solar
   name: Solar power
+  icon: solar_power
   order: 3
   confirmed: true
   summary: A rooftop solar array helps power the building — lower shared costs, cleaner energy.
 
 - id: cafe
   name: Café
+  icon: local_cafe
   order: 4
   confirmed: false
   summary: A ground-floor café for breakfast, lunch and the daily coffee with neighbours.
 
 - id: bookstore
   name: Bookstore
+  icon: menu_book
   order: 5
   confirmed: false
   summary: A small bookstore and reading room off the atrium.
 
 - id: pharmacy
   name: Pharmacy
+  icon: local_pharmacy
   order: 6
   confirmed: false
   summary: A pharmacy downstairs, serving residents and the town.
 
 - id: rooftop
   name: Rooftop lounge
+  icon: deck
   order: 7
   confirmed: false
   summary: A shared rooftop room for classes, gatherings and evenings above the trees.
 
 - id: parking
   name: Covered parking
+  icon: local_parking
   order: 8
   confirmed: true
   summary: Covered parking in the basement, with lift access straight to your floor.

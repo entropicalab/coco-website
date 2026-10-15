@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -75,10 +76,10 @@ const levels = [
         <h2 class="h2">Built for a long life <em>Easy to live in, for a long time.</em></h2>
       </div>
       <div class="grid" style="--min:260px">
-        <div class="point"><h3 class="h3">Step-free throughout</h3><p>Level access through the building, from the street and the parking to every floor. Universal design is our standard, not an upgrade.</p></div>
-        <div class="point"><h3 class="h3">Solar on the roof</h3><p>A rooftop solar array helps power the building, keeping shared running costs down.</p></div>
-        <div class="point"><h3 class="h3">Light and air</h3><p>Every home has windows to the south and an open walkway to the north, for daylight and cross-breezes.</p></div>
-        <div class="point"><h3 class="h3">Parking, solved</h3><p>Covered basement parking, with lifts that go straight up to your floor.</p></div>
+        <div class="point"><Icon name="accessible" class="point__icon" /><h3 class="h3">Step-free throughout</h3><p>Level access through the building, from the street and the parking to every floor. Universal design is our standard, not an upgrade.</p></div>
+        <div class="point"><Icon name="solar_power" class="point__icon" /><h3 class="h3">Solar on the roof</h3><p>A rooftop solar array helps power the building, keeping shared running costs down.</p></div>
+        <div class="point"><Icon name="air" class="point__icon" /><h3 class="h3">Light and air</h3><p>Every home has windows to the south and an open walkway to the north, for daylight and cross-breezes.</p></div>
+        <div class="point"><Icon name="local_parking" class="point__icon" /><h3 class="h3">Parking, solved</h3><p>Covered basement parking, with lifts that go straight up to your floor.</p></div>
       </div>
     </div>
   </section>
@@ -95,5 +96,6 @@ const levels = [
   .levels { list-style: none; padding: 0; border-top: 1px solid var(--color-line); }
   .levels li { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); max-width: none; }
   .levels__name { font-family: var(--font-display); font-weight: 500; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-ink); }
+  .point :global(.point__icon) { font-size: 2.2rem; }
   .point { border-top: 2px solid var(--color-accent); padding-top: 1.25rem; display: grid; gap: 0.6rem; align-content: start; }
 </style>

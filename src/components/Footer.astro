@@ -1,5 +1,6 @@
 ---
 import Logo from '../brand/Logo.astro';
+import Icon from './Icon.astro';
 import site from '../data/site.json';
 const year = new Date().getFullYear();
 ---
@@ -19,9 +20,9 @@ const year = new Date().getFullYear();
 
     <div class="stack" style="--stack:0.5rem">
       <p class="eyebrow">Sales</p>
-      <p><a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a></p>
-      {site.phone && <p><a href={`tel:${site.phone.replace(/[\s-]/g, '')}`}>{site.phone}</a></p>}
-      <p class="muted">{site.address.street}<br />{site.address.locality}, {site.address.region}<br />Panamá</p>
+      <p class="icon-row"><Icon name="mail" /><a href={`mailto:${site.salesEmail}`}>{site.salesEmail}</a></p>
+      {site.phone && <p class="icon-row"><Icon name="call" /><a href={`tel:${site.phone.replace(/[\s-]/g, '')}`}>{site.phone}</a></p>}
+      <p class="muted icon-row" style="align-items:flex-start"><Icon name="location_on" /><span>{site.address.street}<br />{site.address.locality}, {site.address.region}<br />Panamá</span></p>
     </div>
   </div>
 
@@ -42,6 +43,7 @@ const year = new Date().getFullYear();
   .site-footer ul { list-style: none; padding: 0; display: grid; gap: 0.35rem; }
   .site-footer ul a { text-decoration: none; display: inline-block; padding-block: 0.3rem; }
   .site-footer ul a:hover { text-decoration: underline; }
+  .site-footer { --color-icon: var(--color-highlight); }
   .site-footer__legal { padding-top: 2rem; display: grid; gap: 1rem; }
   .site-footer__legal p { max-width: 110ch; }
 </style>

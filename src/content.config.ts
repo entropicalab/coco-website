@@ -24,6 +24,7 @@ const amenities = defineCollection({
   loader: file('src/content/amenities.yaml'),
   schema: z.object({
     name: z.string(),
+    icon: z.string().default('check_circle'),
     order: z.number(),
     confirmed: z.boolean(),
     summary: z.string(),

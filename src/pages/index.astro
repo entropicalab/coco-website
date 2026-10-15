@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import ResidenceCard from '../components/ResidenceCard.astro';
@@ -51,10 +52,10 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   <section class="section--tight">
     <div class="container">
       <dl class="facts">
-        <div><dt>Residences</dt><dd>{s.residences}</dd></div>
-        <div><dt>Sizes</dt><dd>{s.sizeMin}–{s.sizeMax}<small> m²</small></dd></div>
-        <div><dt>Bedrooms</dt><dd>{s.bedroomsMin}–{s.bedroomsMax}</dd></div>
-        <div><dt>Prices</dt><dd class="facts__price">{lowest ? formatPrice(lowest) : 'On request'}</dd></div>
+        <div><dt><Icon name="apartment" />Residences</dt><dd>{s.residences}</dd></div>
+        <div><dt><Icon name="square_foot" />Sizes</dt><dd>{s.sizeMin}–{s.sizeMax}<small> m²</small></dd></div>
+        <div><dt><Icon name="bed" />Bedrooms</dt><dd>{s.bedroomsMin}–{s.bedroomsMax}</dd></div>
+        <div><dt><Icon name="sell" />Prices</dt><dd class="facts__price">{lowest ? formatPrice(lowest) : 'On request'}</dd></div>
       </dl>
     </div>
   </section>
@@ -85,7 +86,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   </section>
 
   <!-- The commons -->
-  <section class="section">
+  <section class="section section--tint-3">
     <div class="container">
       <div class="section-head">
         <h2 class="h1">A garden at the centre <em>{s.residences} homes. Never more than forty neighbours.</em></h2>
@@ -121,7 +122,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
         <ul class="amen">
           {amenities.slice(0, 7).map((a) => (
             <li>
-              <span>{a.data.name}</span>
+              <span class="icon-row"><Icon name={a.data.icon} />{a.data.name}</span>
               {!a.data.confirmed && <span class="tag tag--planned">Planned</span>}
             </li>
           ))}
@@ -133,7 +134,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   </section>
 
   <!-- Coronado -->
-  <section class="section section--tint-3">
+  <section class="section section--alt">
     <div class="container split">
       <Figure src={aerial} alt="Aerial view of Coronado: low-rise neighbourhoods among dense tropical trees." ratio="4/3" illustrative={false} sizes="(min-width: 900px) 50vw, 100vw" />
       <div class="stack">
@@ -192,7 +193,7 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
   .facts { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
   @media (min-width: 800px) { .facts { grid-template-columns: repeat(4, 1fr); } }
   .facts > div { padding: 1.5rem 1rem 1.5rem 0; display: grid; gap: 0.35rem; }
-  .facts dt { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; font-weight: 500; color: var(--color-accent-text); }
+  .facts dt { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-size: 0.78rem; letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; font-weight: 500; color: var(--color-accent-text); }
   .facts dd { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.06em; font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem); color: var(--color-ink); line-height: 1.1; }
   .facts dd small { font-size: 0.5em; }
   .facts__price { font-family: var(--font-accent) !important; font-style: italic; letter-spacing: 0 !important; font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem) !important; }

@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -8,11 +9,11 @@ import winter from '../assets/photos/leaving-winter.jpg';
 import palm from '../assets/photos/coconut-palm.jpg';
 
 const nearby = [
-  { what: 'Supermarkets, banks & pharmacies', where: 'A few minutes away' },
-  { what: 'Private clinics', where: 'In town' },
-  { what: 'The beach', where: 'Short drive' },
-  { what: 'Río Hato international airport', where: 'About 30 minutes' },
-  { what: 'Panama City', where: 'About 1 hour 15 minutes by highway' },
+  { icon: 'shopping_cart', what: 'Supermarkets, banks & pharmacies', where: 'A few minutes away' },
+  { icon: 'local_hospital', what: 'Private clinics', where: 'In town' },
+  { icon: 'beach_access', what: 'The beach', where: 'Short drive' },
+  { icon: 'flight', what: 'Río Hato international airport', where: 'About 30 minutes' },
+  { icon: 'location_city', what: 'Panama City', where: 'About 1 hour 15 minutes by highway' },
 ];
 ---
 <Base title="Coronado, Panamá" description="Why Coronado: one of Panamá’s most established Pacific-coast towns, with a large international community, everyday services close by, and Panama City about an hour away.">
@@ -26,7 +27,7 @@ const nearby = [
     </div>
   </section>
 
-  <section class="section section--tint-1">
+  <section class="section section--alt">
     <div class="container split">
       <div class="stack">
         <h2 class="h2">Why here <em>A real town, already working.</em></h2>
@@ -34,7 +35,7 @@ const nearby = [
         <p>Panamá uses the US dollar, and has a well-known residency programme for retirees.</p>
       </div>
       <dl class="nearby">
-        {nearby.map((n) => <div><dt>{n.what}</dt><dd>{n.where}</dd></div>)}
+        {nearby.map((n) => <div><dt class="icon-row"><Icon name={n.icon} />{n.what}</dt><dd>{n.where}</dd></div>)}
       </dl>
     </div>
   </section>
@@ -65,7 +66,7 @@ const nearby = [
 
 <style>
   .nearby { display: grid; border-top: 1px solid var(--color-line); }
-  .nearby > div { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); }
+  .nearby > div { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--color-line); }
   .nearby dt { color: var(--color-ink); font-weight: 500; }
   .nearby dd { color: var(--color-text-muted); text-align: right; }
   .split :global(.tall) { max-width: 440px; width: 100%; justify-self: center; }
