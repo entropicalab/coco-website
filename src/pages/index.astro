@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Figure from '../components/Figure.astro';
 import ResidenceCard from '../components/ResidenceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
+import LocationMaps from '../components/LocationMaps.astro';
 import Motif from '../brand/Motif.astro';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -57,6 +58,17 @@ const muralBg = await getImage({ src: mural, width: 1800, format: 'webp' });
         <div><dt><Icon name="bed" />Bedrooms</dt><dd>{s.bedroomsMin}–{s.bedroomsMax}</dd></div>
         <div><dt><Icon name="sell" />Prices</dt><dd class="facts__price">{lowest ? formatPrice(lowest) : 'On request'}</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <!-- Where it is: three maps, zooming in -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="h2">Where it is <em>On Panamá’s Pacific coast, nine degrees north of the equator.</em></h2>
+        <p>Warm all year, in the tropics, and a short flight from North and South America. Coronado is an hour and a quarter from Panama City by highway.</p>
+      </div>
+      <LocationMaps />
     </div>
   </section>
 
